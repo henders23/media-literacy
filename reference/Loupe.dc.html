@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#e9e6de;color:#26241f;font-family:"Courier Prime",ui-monospace,SFMono-Regular,Menlo,monospace;-webkit-font-smoothing:antialiased}
+a{color:#2946c8;text-decoration:none;border-bottom:1px solid rgba(41,70,200,.35)}
+a:hover{color:#c0392b;border-bottom-color:rgba(192,57,43,.5)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:#cdc8ba;outline:none;margin:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#2946c8;cursor:ew-resize}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border:0;border-radius:50%;background:#2946c8;cursor:ew-resize}
+textarea{font-family:"Courier Prime",ui-monospace,monospace;font-size:14px;line-height:1.8;color:#26241f;background:rgba(255,255,255,.28);border:1px solid #cdc8ba;border-radius:2px;padding:12px 14px;width:100%;resize:vertical}
+textarea:focus{outline:none;border-color:#2946c8;background:rgba(255,255,255,.5)}
+::placeholder{color:#a9a396}
+::selection{background:#2946c8;color:#efece4}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#e9e6de;background-image:radial-gradient(120% 80% at 12% 0%,rgba(255,255,255,.55),transparent 60%),radial-gradient(90% 70% at 88% 100%,rgba(160,150,125,.22),transparent 65%);position:relative">
+
+  <div style="position:fixed;inset:0;pointer-events:none;z-index:60;mix-blend-mode:multiply;opacity:{{grain}};background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.82%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%22200%22 height=%22200%22 filter=%22url(%23n)%22 opacity=%220.55%22/%3E%3C/svg%3E')"></div>
+  <div style="position:fixed;inset:0;pointer-events:none;z-index:59;mix-blend-mode:multiply;opacity:.5;background-image:radial-gradient(115% 90% at 50% 45%,transparent 55%,rgba(120,110,88,.28))"></div>
+
+  <div style="position:relative;z-index:2;display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:18px 32px 14px;border-bottom:1px solid #d3cec0">
+    <div style="display:flex;align-items:baseline;gap:14px">
+      <span style="font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:#26241f">loupe</span>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:20px;font-size:10px;letter-spacing:.16em;text-transform:uppercase">
+      <span onClick="{{goIndex}}" style="cursor:pointer;color:#8a8578" style-hover="color:#2946c8">index</span>
+      <span onClick="{{goReview}}" style="cursor:pointer;color:#8a8578" style-hover="color:#2946c8">confidence review</span>
+      <span onClick="{{toggleTeacher}}" style="cursor:pointer;color:#8a8578" style-hover="color:#2946c8">{{teacherLabel}}</span>
+    </div>
+  </div>
+
+  <sc-if value="{{isIndex}}" hint-placeholder-val="{{ true }}">
+    <div data-screen-label="Index" style="position:relative;z-index:2;min-height:calc(100vh - 54px);display:flex;justify-content:center;padding:46px 40px 80px;perspective:2200px">
+      <div style="position:relative;width:100%;max-width:1180px;padding:76px 56px 40px;background:#f1eee6;background-image:linear-gradient(105deg,rgba(255,255,255,.5),rgba(255,255,255,0) 38%);border:1px solid #dcd7c9;border-radius:2px;transform-origin:left center;transform:{{sheetTransform}};opacity:{{sheetOpacity}};transition:transform {{sheetDur}} cubic-bezier(.35,.02,.3,1),opacity {{sheetDur}} linear;box-shadow:0 1px 0 #e7e3d7,7px 7px 0 -2px rgba(214,208,192,.5),14px 14px 0 -4px rgba(214,208,192,.32),0 26px 64px rgba(38,36,31,.14)">
+        <sc-if value="{{onFirstPage}}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="text-align:center;font-size:64px;line-height:1;letter-spacing:.26em;text-transform:uppercase;color:#26241f;margin:34px 0 24px;text-indent:.26em">Loupe</div>
+            <div style="max-width:34ch;margin:0 auto 56px;text-align:center;font-size:22px;line-height:1.45;letter-spacing:-.01em;color:#4a4640">Explore historical photos to identify principles of media literacy.</div>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:56px 52px;padding:12px 0 40px">
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+            <div onClick="{{r.onOpen}}" style="width:{{r.width}};margin-top:{{r.offset}};transform:{{r.transform}};cursor:pointer;transition:transform .35s cubic-bezier(.2,.7,.2,1)" style-hover="transform:rotate(0deg) translateY(-4px)">
+              <div style="width:100%;aspect-ratio:{{r.ratio}};background-color:#d8d3c6;background-image:{{r.bg}};background-size:cover;background-position:center;box-shadow:0 6px 22px rgba(38,36,31,.16);border:6px solid #f2efe7"></div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:{{r.markColor}}">
+                <span style="color:#8a8578">{{r.unit}}</span>
+                <span>{{r.mark}}</span>
+              </div>
+              <div style="margin-top:6px;font-size:14px;line-height:1.4">{{r.title}}<span style="color:#a9a396">{{r.lens}}</span></div>
+              <div style="margin-top:5px;font-size:12px;line-height:1.6;color:#8a8578">{{r.desc}}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:40px;display:flex;align-items:baseline;justify-content:space-between;gap:24px;border-top:1px solid #ded9cc;padding-top:16px">
+          <sc-if value="{{showBack}}">
+            <span onClick="{{onBack}}" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#2946c8;cursor:pointer;border-bottom:1px solid rgba(41,70,200,.35)">back a page</span>
+          </sc-if>
+          <sc-if value="{{onFirstPage}}" hint-placeholder-val="{{ true }}"><span></span></sc-if>
+          <span onClick="{{onTurn}}" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#2946c8;cursor:pointer;border-bottom:1px solid rgba(41,70,200,.35)">{{pageLabel}}</span>
+        </div>
+        <div onClick="{{onTurn}}" title="turn the page" style="position:absolute;right:0;bottom:0;width:74px;height:74px;cursor:pointer;background:linear-gradient(315deg,#e2ded1 0%,#e2ded1 48%,rgba(226,222,209,0) 50%);box-shadow:-2px -2px 6px rgba(38,36,31,.09) inset" style-hover="background:linear-gradient(315deg,#d6d0bf 0%,#d6d0bf 48%,rgba(214,208,191,0) 50%)"></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isCard}}">
+    <div data-screen-label="Card" style="position:relative;z-index:2;display:grid;grid-template-columns:1.08fr 1fr;min-height:calc(100vh - 54px)">
+
+      <div style="padding:40px 44px 56px;border-right:1px solid #d3cec0">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:20px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8578">
+          <span>plate {{cRef}}</span>
+          <span>{{cUnit}}</span>
+        </div>
+
+        <div style="width:100%;max-width:{{plateMaxW}}">
+          <div ref="{{plateRef}}" onPointerMove="{{onPlateMove}}" onPointerLeave="{{onPlateLeave}}" onClick="{{onPlateClick}}" style="position:relative;width:100%;aspect-ratio:{{plateRatio}};background:#d8d3c6;overflow:hidden;cursor:{{plateCursor}};box-shadow:0 1px 0 rgba(255,255,255,.6)">
+            <div style="position:absolute;inset:0;background-image:{{plateBg}};background-size:{{plateSize}};background-position:{{platePos}};background-repeat:no-repeat;filter:{{plateFilter}};transform:rotate({{plateRotate}}deg);transition:transform .55s cubic-bezier(.2,.7,.2,1),filter .7s"></div>
+            <div style="position:absolute;inset:0;background-image:{{diffBg}};background-size:{{plateSize}};background-position:{{platePos}};background-repeat:no-repeat;mix-blend-mode:difference;display:{{diffShow}};z-index:3;pointer-events:none"></div>
+            <div style="position:absolute;left:{{regX}};top:{{regY}};width:{{regW}};height:{{regH}};border:1px dashed #c0392b;display:{{regShow}};z-index:4;pointer-events:none"></div>
+            <div style="position:absolute;left:{{markX}};top:{{markY}};width:14px;height:14px;margin:-7px 0 0 -7px;border:1px solid #2946c8;border-radius:50%;display:{{markShow}};z-index:5;pointer-events:none"></div>
+            <div style="position:absolute;left:{{cropX}};top:{{cropY}};width:{{cropW}};height:{{cropH}};box-shadow:0 0 0 9999px rgba(233,230,222,.74);border:1px solid #2946c8;display:{{cropShow}};z-index:6">
+              <sc-for list="{{cropHandles}}" as="h" hint-placeholder-count="4">
+                <div onPointerDown="{{h.down}}" style="position:absolute;left:{{h.left}};top:{{h.top}};width:15px;height:15px;margin:-8px 0 0 -8px;background:#2946c8;cursor:{{h.cursor}}"></div>
+              </sc-for>
+            </div>
+            <div style="position:absolute;width:210px;height:210px;border-radius:50%;border:1px solid rgba(38,36,31,.5);box-shadow:0 12px 34px rgba(38,36,31,.3);pointer-events:none;z-index:7;background-image:{{plateBg}};background-repeat:no-repeat;background-size:{{loupeSize}};background-position:{{loupePos}};left:{{loupeX}};top:{{loupeY}};display:{{loupeShow}}"></div>
+          </div>
+
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-top:12px;border-top:1px solid #d3cec0;padding-top:10px">
+            <div style="display:flex;gap:16px;font-size:10px;letter-spacing:.14em;text-transform:uppercase">
+              <sc-for list="{{plateTools}}" as="t" hint-placeholder-count="1">
+                <span onClick="{{t.onPick}}" style="cursor:{{t.cursor}};color:{{t.color}};border-bottom:1px solid {{t.underline}};padding-bottom:2px">{{t.label}}</span>
+              </sc-for>
+            </div>
+            <span style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#a9a396">{{toolHint}}</span>
+          </div>
+
+          <div style="margin-top:16px;font-size:16px;line-height:1.5;color:#26241f;max-width:62ch">{{cTitle}}</div>
+          <div style="margin-top:8px;font-size:13.5px;line-height:1.7;color:#7d7869;max-width:62ch">{{cCredit}}</div>
+          <div style="margin-top:8px;font-size:13.5px"><a href="{{cSource}}" target="_blank" rel="noopener">source record</a><span style="color:#a9a396"> · {{cRights}}</span></div>
+        </div>
+      </div>
+
+      <div style="padding:40px 48px 72px;display:flex;flex-direction:column;min-height:0">
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px">
+          <sc-for list="{{rail}}" as="b" hint-placeholder-count="7">
+            <div style="display:flex;align-items:baseline;gap:5px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:{{b.color}}">
+              <span>{{b.num}}</span><span>{{b.label}}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:22px">
+          <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#c0392b">beat {{beatNum}} — {{beatLabel}}</span>
+          <sc-if value="{{showBeatBack}}">
+            <span onClick="{{onBeatBack}}" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8578;cursor:pointer;border-bottom:1px solid #d3cec0" style-hover="color:#2946c8">back one question</span>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{atLook}}">
+          <div>
+            <div style="font-size:24px;line-height:1.45;max-width:34ch;margin-bottom:38px">{{lookText}}</div>
+            <div onClick="{{advance}}" style="display:inline-block;border:1px solid #2946c8;color:#2946c8;padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-radius:2px" style-hover="background:#2946c8;color:#efece4">start questions</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{atCommit}}">
+          <div>
+            <div style="font-size:23px;line-height:1.45;max-width:36ch;margin-bottom:26px">{{commitPrompt}}</div>
+            <div style="display:flex;flex-direction:column;gap:0;margin-bottom:34px">
+              <sc-for list="{{commitOptions}}" as="o" hint-placeholder-count="4">
+                <div onClick="{{o.onPick}}" style="display:grid;grid-template-columns:18px 1fr;gap:12px;padding:13px 10px 13px 0;border-bottom:1px solid #ded9cc;cursor:pointer;color:{{o.color}};background:{{o.bg}}" style-hover="background:rgba(255,255,255,.42)">
+                  <span style="font-size:12px">{{o.mark}}</span>
+                  <span style="font-size:14.5px;line-height:1.6">{{o.text}}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="max-width:46ch;margin-bottom:38px">
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#7d7869;margin-bottom:18px">
+                <span>how sure are you</span><span style="color:#2946c8;font-size:15px">{{conf}}% · {{confWord}}</span>
+              </div>
+              <input type="range" min="0" max="100" step="5" value="{{conf}}" onInput="{{onConf}}" />
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:#a9a396;margin-top:12px"><span>a guess</span><span>certain</span></div>
+            </div>
+            <div onClick="{{onLockCommit}}" style="display:inline-block;border:1px solid {{lockColor}};color:{{lockColor}};padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:{{lockCursor}};border-radius:2px">{{lockLabel}}</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{atContext}}">
+          <div>
+            <div style="display:flex;flex-direction:column;gap:20px;max-width:52ch;margin-bottom:38px">
+              <sc-for list="{{contextParas}}" as="p" hint-placeholder-count="2">
+                <div style="font-size:14.5px;line-height:1.85;color:#3b3830;text-wrap:pretty">{{p.text}}</div>
+              </sc-for>
+            </div>
+            <div onClick="{{advance}}" style="display:inline-block;border:1px solid #2946c8;color:#2946c8;padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-radius:2px" style-hover="background:#2946c8;color:#efece4">next question</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{atProbe}}">
+          <div>
+            <div style="font-size:23px;line-height:1.45;max-width:36ch;margin-bottom:28px">{{probePrompt}}</div>
+
+            <sc-if value="{{showProbeOptions}}">
+              <div style="display:flex;flex-direction:column;margin-bottom:32px">
+                <sc-for list="{{probeOptions}}" as="o" hint-placeholder-count="4">
+                  <div onClick="{{o.onPick}}" style="display:grid;grid-template-columns:18px 1fr;gap:12px;padding:13px 10px 13px 0;border-bottom:1px solid #ded9cc;cursor:pointer;color:{{o.color}};background:{{o.bg}}" style-hover="background:rgba(255,255,255,.42)">
+                    <span style="font-size:12px">{{o.mark}}</span>
+                    <span style="font-size:14.5px;line-height:1.6">{{o.text}}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{showColour}}">
+              <div style="display:flex;flex-direction:column;gap:0;margin-bottom:32px;max-width:46ch">
+                <sc-for list="{{colourRows}}" as="f" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0;border-bottom:1px solid #ded9cc">
+                    <span style="font-size:13.5px">{{f.label}}</span>
+                    <div style="display:flex;gap:8px">
+                      <sc-for list="{{f.swatches}}" as="s" hint-placeholder-count="3">
+                        <div onClick="{{s.onPick}}" style="width:26px;height:26px;border-radius:2px;background:{{s.bg}};border:1px solid {{s.border}};cursor:pointer"></div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{showPlateAnswerNote}}">
+              <div style="font-size:12.5px;line-height:1.8;color:#8a8578;max-width:46ch;margin-bottom:30px">{{plateAnswerNote}}</div>
+            </sc-if>
+
+            <div onClick="{{onSubmitProbe}}" style="display:inline-block;border:1px solid {{submitColor}};color:{{submitColor}};padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:{{submitCursor}};border-radius:2px">{{submitLabel}}</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{atReveal}}">
+          <div>
+            <div style="border-left:2px solid #2946c8;padding:4px 0 4px 16px;max-width:46ch;margin-bottom:30px">
+              <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8578;margin-bottom:9px">at beat two, {{conf}}% sure, you said</div>
+              <div style="font-size:15px;line-height:1.65;color:#2946c8">{{quotedAnswer}}</div>
+            </div>
+            <div style="font-size:16px;line-height:1.75;max-width:46ch;margin-bottom:22px;text-wrap:pretty">{{revealText}}</div>
+            <div style="font-size:14.5px;line-height:1.85;color:#3b3830;max-width:50ch;margin-bottom:38px;text-wrap:pretty">{{revealExtra}}</div>
+            <div onClick="{{advance}}" style="display:inline-block;border:1px solid #2946c8;color:#2946c8;padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-radius:2px" style-hover="background:#2946c8;color:#efece4">and yet — the other side of it</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{atAndYet}}">
+          <div>
+            <div style="font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:#8a8578;margin-bottom:20px">and yet</div>
+            <div style="font-size:20px;line-height:1.5;max-width:38ch;margin-bottom:24px">{{andYetPrompt}}</div>
+            <textarea rows="4" placeholder="One line is enough." value="{{andYetValue}}" onChange="{{onAndYet}}" style="max-width:48ch"></textarea>
+            <sc-if value="{{andYetShown}}">
+              <div style="margin-top:30px;max-width:50ch;border-top:1px solid #d3cec0;padding-top:22px">
+                <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8578;margin-bottom:14px">the canonical defence</div>
+                <div style="font-size:14.5px;line-height:1.85;color:#3b3830;text-wrap:pretty">{{andYetCanonical}}</div>
+              </div>
+            </sc-if>
+            <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
+              <div onClick="{{onShowAndYet}}" style="display:inline-block;border:1px solid {{andYetBtnColor}};color:{{andYetBtnColor}};padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:{{andYetBtnCursor}};border-radius:2px">{{andYetBtnLabel}}</div>
+              <sc-if value="{{andYetShown}}">
+                <div onClick="{{advance}}" style="display:inline-block;border:1px solid #2946c8;color:#2946c8;padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-radius:2px" style-hover="background:#2946c8;color:#efece4">write the principle</div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{atPrinciple}}">
+          <div>
+            <div style="font-size:20px;line-height:1.5;max-width:40ch;margin-bottom:14px">Write the rule this photograph teaches, in one line.</div>
+            <div style="font-size:12.5px;line-height:1.75;color:#8a8578;max-width:46ch;margin-bottom:24px">It has to discriminate. What separates authorship from deception in this case, specifically.</div>
+            <textarea rows="4" placeholder="Your principle." value="{{principleValue}}" onChange="{{onPrinciple}}" style="max-width:48ch"></textarea>
+            <sc-if value="{{principleShown}}">
+              <div style="margin-top:30px;max-width:50ch;border-top:1px solid #d3cec0;padding-top:22px">
+                <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8578;margin-bottom:14px">the canonical principle</div>
+                <div style="font-size:15px;line-height:1.8;color:#26241f;text-wrap:pretty">{{principleCanonical}}</div>
+                <div style="margin-top:24px;display:inline-block;border:1px solid {{verdictColor}};color:{{verdictColor}};padding:8px 14px;font-size:10px;letter-spacing:.2em;text-transform:uppercase">verdict — {{verdictLabel}}</div>
+                <div style="margin-top:16px;font-size:12.5px;line-height:1.8;color:#8a8578">lens filed: {{cLens}}</div>
+              </div>
+            </sc-if>
+            <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
+              <div onClick="{{onShowPrinciple}}" style="display:inline-block;border:1px solid {{prinBtnColor}};color:{{prinBtnColor}};padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:{{prinBtnCursor}};border-radius:2px">{{prinBtnLabel}}</div>
+              <sc-if value="{{principleShown}}">
+                <div onClick="{{onFinish}}" style="display:inline-block;border:1px solid #2946c8;color:#2946c8;padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-radius:2px" style-hover="background:#2946c8;color:#efece4">{{finishLabel}}</div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{atUnseenAsk}}">
+          <div>
+            <div style="font-size:24px;line-height:1.45;max-width:34ch;margin-bottom:16px">{{unseenPrompt}}</div>
+            <div style="font-size:12.5px;line-height:1.75;color:#8a8578;max-width:46ch;margin-bottom:26px">{{unseenNote}}</div>
+            <textarea rows="5" placeholder="What the frame cannot tell you." value="{{principleValue}}" onChange="{{onPrinciple}}" style="max-width:48ch"></textarea>
+            <div onClick="{{onShowPrinciple}}" style="margin-top:28px;display:inline-block;border:1px solid {{prinBtnColor}};color:{{prinBtnColor}};padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:{{prinBtnCursor}};border-radius:2px">record it</div>
+            <sc-if value="{{principleShown}}">
+              <div style="margin-top:34px;max-width:50ch;border-top:1px solid #d3cec0;padding-top:22px">
+                <div style="font-size:14.5px;line-height:1.85;color:#3b3830;text-wrap:pretty">{{unseenAfter}}</div>
+                <div onClick="{{goReview}}" style="margin-top:28px;display:inline-block;border:1px solid #2946c8;color:#2946c8;padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-radius:2px" style-hover="background:#2946c8;color:#efece4">show my confidence review</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isReview}}">
+    <div data-screen-label="Confidence review" style="position:relative;z-index:2;padding:64px 56px 90px;max-width:1100px">
+      <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8a8578;margin-bottom:28px">confidence review</div>
+      <div style="font-size:26px;line-height:1.4;max-width:32ch;margin-bottom:14px">Where you were sure and wrong.</div>
+      <div style="font-size:14px;line-height:1.85;color:#4a4640;max-width:50ch;margin-bottom:48px">{{reviewNote}}</div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{reviewRows}}" as="r" hint-placeholder-count="3">
+          <div onClick="{{r.onOpen}}" style="display:grid;grid-template-columns:48px 1fr 130px 150px;gap:18px;align-items:baseline;padding:15px 0;border-bottom:1px solid #ded9cc;cursor:pointer" style-hover="background:rgba(255,255,255,.4)">
+            <span style="font-size:11px;letter-spacing:.1em;color:#a9a396">{{r.ref}}</span>
+            <span style="font-size:15px">{{r.title}}</span>
+            <span style="font-size:11.5px;letter-spacing:.08em;color:#8a8578">{{r.confText}}</span>
+            <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:{{r.color}}">{{r.resultText}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:44px;display:flex;gap:12px">
+        <div onClick="{{goIndex}}" style="display:inline-block;border:1px solid #2946c8;color:#2946c8;padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-radius:2px" style-hover="background:#2946c8;color:#efece4">back to the index</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{teacherOpen}}">
+    <div data-screen-label="Teacher mode" style="position:fixed;top:0;right:0;bottom:0;width:min(460px,92vw);background:#e4e0d6;border-left:1px solid #cdc8ba;box-shadow:-24px 0 60px rgba(38,36,31,.14);z-index:70;overflow:auto;padding:30px 32px 60px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:30px">
+        <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#26241f">teacher mode</span>
+        <span onClick="{{toggleTeacher}}" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8578;cursor:pointer" style-hover="color:#2946c8">close</span>
+      </div>
+      <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8578;margin-bottom:12px">notes — {{cRef}}</div>
+      <div style="font-size:13.5px;line-height:1.8;color:#3b3830;margin-bottom:38px">{{teacherNotes}}</div>
+      <sc-if value="{{showCalib}}">
+        <div style="margin-bottom:38px">
+          <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8578;margin-bottom:12px">registration — {{calibPlate}}</div>
+          <div style="font-size:11.5px;line-height:1.7;color:#8a8578;margin-bottom:16px">Scans from different institutions are not aligned. Nudge this plate until the two sit on top of each other, then read the values into the card data.</div>
+          <sc-for list="{{calibRows}}" as="k" hint-placeholder-count="3">
+            <div style="margin-bottom:14px">
+              <div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#7d7869;margin-bottom:6px">
+                <span>{{k.label}}</span><span style="color:#2946c8">{{k.value}}</span>
+              </div>
+              <input type="range" min="{{k.min}}" max="{{k.max}}" step="{{k.step}}" value="{{k.value}}" onInput="{{k.onChange}}" />
+            </div>
+          </sc-for>
+          <div style="display:flex;gap:12px;margin-top:14px">
+            <span onClick="{{onDiff}}" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:{{diffColor}};cursor:pointer;border-bottom:1px solid #d8d3c6">difference view</span>
+            <span onClick="{{onResetAlign}}" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8578;cursor:pointer;border-bottom:1px solid #d8d3c6">reset</span>
+          </div>
+        </div>
+      </sc-if>
+      <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8578;margin-bottom:12px">rights audit — all plates</div>
+      <div style="display:flex;flex-direction:column;margin-bottom:16px">
+        <sc-for list="{{auditRows}}" as="a" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:44px 1fr auto;gap:12px;padding:9px 0;border-bottom:1px solid #d8d3c6;font-size:11.5px">
+            <span style="color:#a9a396">{{a.ref}}</span>
+            <span style="color:#3b3830">{{a.status}}</span>
+            <span style="letter-spacing:.14em;text-transform:uppercase;font-size:10px;color:{{a.color}}">{{a.verdict}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font-size:11.5px;line-height:1.75;color:#8a8578;margin-bottom:38px">{{auditNote}}</div>
+      <div onClick="{{onExport}}" style="display:inline-block;border:1px solid #2946c8;color:#2946c8;padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-radius:2px" style-hover="background:#2946c8;color:#efece4">download responses as csv</div>
+      <div onClick="{{onReset}}" style="margin-top:12px;display:inline-block;border:1px solid #c0392b;color:#c0392b;padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;border-radius:2px" style-hover="background:#c0392b;color:#efece4">clear this device's responses</div>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;grain&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.42,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.02,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Paper&quot;},&quot;lensRetrievalFrom&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:13,&quot;min&quot;:1,&quot;max&quot;:31,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Sequence&quot;},&quot;showTeacherTools&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sequence&quot;}}">
+const WM = (n) => "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(n) + "?width=1600";
+const INK = "#26241f", MUTED = "#8a8578", DIM = "#a9a396", BLUE = "#2946c8", RED = "#c0392b", GREEN = "#4e7f52";
+
+const LENSES = [
+  { id: "staged", label: "staged", gloss: "arranged in front of the camera" },
+  { id: "cropped", label: "cropped", gloss: "the frame cut until the account changes" },
+  { id: "miscaptioned", label: "miscaptioned", gloss: "true frame, false words" },
+  { id: "retouched", label: "retouched", gloss: "altered after the exposure" },
+  { id: "one-frame-of-many", label: "one frame of many", gloss: "a selection presented as the event" },
+  { id: "wrong-context", label: "wrong context", gloss: "a real photograph of somewhere else" },
+  { id: "no-referent", label: "no referent", gloss: "nothing was in front of a lens" }
+];
+const LENS_OPTIONS = LENSES.map(l => ({ key: l.id, text: l.label + " — " + l.gloss }));
+const lensLabel = (id) => { const l = LENSES.find(x => x.id === id); return l ? l.label : id; };
+
+const CARDS = [
+  {
+    id: "fenton", ref: "03", unit: 1, unitLabel: "Unit 1", lens: "staged", tier: "core",
+    ratio: 960 / 735, sensitivity: "none",
+    rights: { status: "public-domain", display: "host", holder: "Library of Congress",
+      credit: "Roger Fenton, 23 April 1855. Salted paper print. Library of Congress Prints & Photographs Division, Washington. Public domain.",
+      sourceUrl: "https://www.loc.gov/pictures/item/2001697141/" },
+    assets: [
+      { label: "plate a", src: WM("Roger Fenton - Shadow of the Valley of Death.jpg"), ratio: 5606 / 4257 },
+      { label: "plate b", src: "images/fenton-clear-road.jpg", ratio: 2040 / 1126, align: { scale: 1, dx: 0, dy: 0 } }
+    ],
+    look: "A ravine on the road to Sevastopol, Crimea. 23 April 1855.",
+    commit: {
+      prompt: "What do you think this photograph shows?",
+      note: "Ungraded, and it stays on the record. It is what you thought before anyone told you anything.",
+      options: [
+        { key: "fell", text: "A road under fire, with the cannonballs where they landed." },
+        { key: "after", text: "A valley after the shelling stopped, photographed as it was found." },
+        { key: "moved", text: "A valley where the cannonballs were moved before the photograph was taken." },
+        { key: "cant", text: "One photograph cannot answer this." }
+      ]
+    },
+    context: [
+      "In 1855 a print dealer sent Fenton to the Crimean War to bring back photographs to sell. He made about 360 of them. Each one had to be coated, exposed and developed inside a horse-drawn van, and each exposure took several seconds.",
+      "British soldiers called this valley the valley of death, because Russian guns fired into it. The picture was shown in London later that year as one of a series of views.",
+      "Two photographs of this same view survive. Fenton made both on the same day, from the same place."
+    ],
+    probe: {
+      prompt: "Switch between the two plates. What is different?",
+      note: "Beat two asked what you thought. This asks what you can prove. Use the loupe on the road.",
+      tools: ["ab", "loupe"], grade: "options",
+      options: [
+        { key: "hill", text: "Guns have hit the hillside between the two photographs." },
+        { key: "road", text: "In one plate the cannonballs lie in the ditch. In the other they also cover the road.", correct: true },
+        { key: "sky", text: "The sky has been added to one plate." },
+        { key: "light", text: "The shadows point in different directions." }
+      ]
+    },
+    reveal: {
+      correct: "Yes. The place, the camera position and the light stay the same. The cannonballs do not.",
+      incorrect: "Not that. The place, the camera position and the light stay the same in both plates. The cannonballs do not: in one they lie in the ditch, in the other they also lie on the road.",
+      extra: "In 2007 the film-maker Errol Morris visited the place and compared the two plates. Small rocks had rolled down the slope between the two exposures, and this shows the order: the plate with cannonballs on the road was made second. Someone moved them there before Fenton took it."
+    },
+    andYet: {
+      prompt: "Fenton was selling views, not news. Does that excuse moving the cannonballs?",
+      canonical: "In 1855 nobody had agreed that a photograph was proof. Cameras were slow, so anything that moved could not be photographed at all. The valley was real and the shelling was real, and the picture was sold as a view, not as news. Fenton moved objects in an empty landscape. He did not invent an event."
+    },
+    principle: {
+      canonical: "Moving objects inside the frame changes what a photograph can prove. The shelling was real, but the cannonballs on the road are Fenton's arrangement — and a viewer cannot see the difference.",
+      verdict: "deceptive"
+    },
+    teacherNotes: "Students often settle on the ditch plate as \"the real one\". Press on that: choosing the moment to expose is also a choice. The finding is the pair, not either plate on its own."
+  },
+  {
+    id: "iwojima", ref: "06", unit: 1, unitLabel: "Unit 1", lens: "miscaptioned", tier: "core",
+    ratio: 960 / 727, sensitivity: "discussion",
+    rights: { status: "public-domain", display: "host", holder: "Associated Press",
+      credit: "Joe Rosenthal, 23 February 1945. Associated Press. Public domain in the United States.",
+      sourceUrl: "https://en.wikipedia.org/wiki/Raising_the_Flag_on_Iwo_Jima" },
+    assets: [{ label: "plate", src: WM("Raising the Flag on Iwo Jima, larger - edit1.jpg") }],
+    look: "The summit of Mount Suribachi, Iwo Jima. 23 February 1945.",
+    commit: {
+      prompt: "What moment do you think this is?",
+      note: "Ungraded. Answer from the frame and from whatever you already carry about this picture.",
+      options: [
+        { key: "first", text: "The first American flag going up on the summit." },
+        { key: "second", text: "A second, larger flag going up hours after the first one." },
+        { key: "reenact", text: "A scene acted again for the camera, days later." },
+        { key: "cant", text: "The picture cannot tell you which." }
+      ]
+    },
+    context: [
+      "A small flag went up on the summit that morning. It was too small to see from the beaches, so a larger one was carried up a few hours later. Rosenthal arrived as the second flag was going up. He took one photograph very quickly, without looking through the viewfinder, and did not see the result until the film was developed.",
+      "Later that day he did pose a group of marines cheering under the flag. That was a different photograph, and he always said it was posed. People have confused the two ever since. The caption sent out with this picture said nothing about a first flag."
+    ],
+    probe: {
+      prompt: "Click the part of the picture that shows the summit was already taken.",
+      note: "Not what you believe. What the picture itself shows.",
+      tools: ["hotspot"], grade: "hotspot",
+      hotspot: { x: 10, y: 56, w: 56, h: 40, label: "the ground and the figures on it" }
+    },
+    reveal: {
+      correct: "Yes. The ground is churned up, the men stand upright in the open, and nobody is taking cover.",
+      incorrect: "The evidence is on the ground: churned earth, men standing upright in the open, nobody taking cover. The summit was already taken. This is the second flag, not the first one.",
+      extra: "Rosenthal never said it was the first flag. Newspapers said that, because readers want a first time. For fifty years he was accused of faking the photograph he had not faked."
+    },
+    andYet: {
+      prompt: "Rosenthal was called a faker for fifty years. He never wrote the caption. Is he to blame?",
+      canonical: "He photographed something that was really happening, in one exposure, and arranged nothing. He said the same thing about it all his life. The false part was added later, by captions and by readers."
+    },
+    principle: {
+      canonical: "A photograph can be completely true and still carry a false claim, if the caption does not say which of two similar events it shows. The person who writes the caption is responsible.",
+      verdict: "unresolved"
+    },
+    teacherNotes: "Two flags, two photographs, one of them genuinely posed — students conflate all four facts. Draw the four apart on the board before discussion."
+  },
+  {
+    id: "sitroom", ref: "11", unit: 2, unitLabel: "Unit 2", lens: "cropped", tier: "core",
+    ratio: 960 / 640, sensitivity: "none",
+    rights: { status: "public-domain", display: "host", holder: "The White House",
+      credit: "Pete Souza, 1 May 2011. Official White House photograph. Public domain.",
+      sourceUrl: "https://www.flickr.com/photos/whitehouse/5680724572" },
+    assets: [{ label: "plate", src: WM("Obama and Biden await updates on bin Laden.jpg") }],
+    look: "A conference room in the West Wing of the White House, Washington. 1 May 2011.",
+    commit: {
+      prompt: "What do you think you are looking at?",
+      note: "Ungraded. Say what you take the picture to be.",
+      options: [
+        { key: "sitroom", text: "The Situation Room, during the raid." },
+        { key: "side", text: "A small room next door to it, during the raid." },
+        { key: "posed", text: "A picture arranged after the operation was over." },
+        { key: "cant", text: "The picture cannot tell you which room this is." }
+      ]
+    },
+    context: [
+      "This is not the Situation Room. It is a small meeting room next to it, about seven metres by five. Souza took about a hundred photographs from the doorway over about forty minutes.",
+      "Before the picture was released, the White House blurred a document on the table. Later, two newspapers in Brooklyn removed Hillary Clinton and Audrey Tomasello from the picture before printing it, and then apologised."
+    ],
+    probe: {
+      prompt: "Use the loupe. Which of these can you actually find in the picture?",
+      note: "One of these is really there. The other three come from films.",
+      tools: ["loupe"], grade: "options",
+      options: [
+        { key: "doc", text: "A document on the table with the writing blurred out.", correct: true },
+        { key: "feed", text: "A television showing live pictures of the compound." },
+        { key: "map", text: "A map of Abbottabad on the wall." },
+        { key: "phone", text: "A red telephone." }
+      ]
+    },
+    reveal: {
+      correct: "Yes. A document on the table is blurred on purpose, and the White House said so when it released the picture.",
+      incorrect: "There is no live feed, no wall map and no red telephone. There is a document on the table with the writing blurred out, and the White House said it had done this.",
+      extra: "So this picture has two edits. One hid secret information, and was explained. The other removed two women, and was not explained until readers noticed."
+    },
+    andYet: {
+      prompt: "Two edits happened here: a blur, and a crop that removed two people. What can be said for the first one?",
+      canonical: "The blur took secret information out of a picture that could not have been released at all without it, and the White House said what it had done. Nobody was removed, and nothing about the room was changed."
+    },
+    principle: {
+      canonical: "Hiding information to protect a secret and removing a person are both edits. Only one of them changes who was in the room, and only one of them was explained.",
+      verdict: "unresolved"
+    },
+    teacherNotes: "Useful for separating redaction from falsification. Both are subtraction; only one is dishonest, and the difference is disclosure plus what is being subtracted."
+  },
+  {
+    id: "earthrise", ref: "12", unit: 2, unitLabel: "Unit 2", lens: "retouched", tier: "core",
+    ratio: 1, sensitivity: "none",
+    rights: { status: "public-domain", display: "host", holder: "NASA",
+      credit: "William Anders, Apollo 8, 24 December 1968. NASA AS08-14-2383. Public domain.",
+      sourceUrl: "https://www.nasa.gov/image-article/apollo-8-earthrise/" },
+    assets: [{ label: "plate", src: WM("NASA-Apollo8-Dec24-Earthrise.jpg") }],
+    look: "Lunar orbit, about 110 kilometres above the surface. 24 December 1968.",
+    commit: {
+      prompt: "Which way up was this picture taken?",
+      note: "Ungraded. The published orientation is not necessarily the exposed one.",
+      options: [
+        { key: "asis", text: "As you see it, with the edge of the Moon along the bottom." },
+        { key: "quarter", text: "The edge of the Moon ran up and down. It was turned before publication." },
+        { key: "inverted", text: "It was taken upside down." },
+        { key: "cant", text: "In orbit there is no up, so you cannot say." }
+      ]
+    },
+    context: [
+      "The spacecraft was turning as it came around the Moon. Anders took the picture through a side window with a long lens, holding the camera in his hands. In orbit there is no up or down, so the camera had no horizon to line up with.",
+      "NASA published the picture turned a quarter turn, with the edge of the Moon along the bottom and Earth above it. Almost every copy since has used that version."
+    ],
+    probe: {
+      prompt: "Turn the plate back to the way the camera recorded it.",
+      note: "Put the edge of the Moon where the film has it.",
+      tools: ["rotate"], grade: "rotate", rotateAnswer: [90, 270]
+    },
+    reveal: {
+      correct: "Yes. On the film the edge of the Moon runs up and down. Nothing was added, removed or moved. The whole edit is a quarter turn.",
+      incorrect: "On the film the edge of the Moon runs up and down — a quarter turn from the version you know. Nothing was added, removed or moved.",
+      extra: "The picture was turned so that people on Earth could read it, in a place where no direction is more true than another. It is the smallest edit possible, and it changed how millions of people understood the photograph."
+    },
+    andYet: {
+      prompt: "In orbit there is no up. Does that make turning the picture fair?",
+      canonical: "In orbit there is no correct up, so turning the picture cannot be false to the scene. Turning it let people see a horizon with a world rising above it, which is what the crew described. Nothing about the subject was changed."
+    },
+    principle: {
+      canonical: "An edit that changes nothing in front of the lens can still change what a picture says. Which way up a picture is shown is a choice — and it costs nothing to say you made it.",
+      verdict: "acceptable"
+    },
+    teacherNotes: "One of the three cards that must resolve as acceptable. If students arrive at \"any edit is a lie\", this card is the corrective — do not let them predict the verdict from the deck."
+  },
+  {
+    id: "aldrin", ref: "13", unit: 3, unitLabel: "Unit 3", lens: "miscaptioned", tier: "core",
+    ratio: 960 / 966, sensitivity: "none", lensRetrieval: true,
+    rights: { status: "public-domain", display: "host", holder: "NASA",
+      credit: "Neil Armstrong, 20 July 1969. NASA AS11-40-5903. Public domain.",
+      sourceUrl: "https://www.nasa.gov/image-article/aldrin-looks-back-tranquility-base/" },
+    assets: [{ label: "plate", src: WM("Aldrin Apollo 11 original.jpg") }],
+    look: "The Sea of Tranquility, the Moon. 20 July 1969.",
+    commit: {
+      prompt: "Which lens applies to this photograph?",
+      note: "From here on, beat two asks you to name the mechanism. Still ungraded.",
+      options: LENS_OPTIONS
+    },
+    context: [
+      "Armstrong carried the only camera on the surface. So nearly every photograph of a person standing on the Moon is a photograph of Aldrin, taken by Armstrong.",
+      "This picture has been captioned \"Armstrong on the Moon\" in newspapers, posters and school books for decades. Armstrong is in it — but not where the caption says."
+    ],
+    probe: {
+      prompt: "Click the only part of this picture that shows the other astronaut.",
+      note: "The loupe is on. It magnifies 3.4 times.",
+      tools: ["loupe", "hotspot"], grade: "hotspot",
+      hotspot: { x: 32, y: 12, w: 36, h: 28, label: "the gold visor" }
+    },
+    reveal: {
+      correct: "Yes. Armstrong is reflected in the gold visor, camera at his chest, with the lunar module beside him. The man standing in the suit is Aldrin.",
+      incorrect: "Armstrong is in the picture — reflected in the gold visor, with the camera at his chest. The man standing in the suit is Aldrin. Use the loupe on the visor.",
+      extra: "The caption is the only thing that names anyone in this picture, and for fifty years it has often been wrong."
+    },
+    andYet: {
+      prompt: "The two suits look identical. Is a wrong name under a photograph a small mistake or a false claim?",
+      canonical: "The two suits look the same, and the name people remember is the name of the first man on the Moon. NASA's own name for the picture is only a number. The mistake is careless rather than planned — but it is still false, and it was printed for fifty years by people who could have checked."
+    },
+    principle: {
+      canonical: "A caption is a claim, and it borrows the authority of the photograph above it. When the picture cannot show who someone is, the caption is the only evidence — so it has to be checked.",
+      verdict: "deceptive"
+    },
+    teacherNotes: "Lens retrieval switches on at this card. Expect students to reach for staged, because the Moon invites it. Ask what in the frame would support staged, and let the question do the work."
+  },
+  {
+    id: "pillars", ref: "20", unit: 4, unitLabel: "Unit 4", lens: "retouched", tier: "extended",
+    ratio: 960 / 947, sensitivity: "none", lensRetrieval: true,
+    rights: { status: "public-domain", display: "host", holder: "NASA / ESA / STScI",
+      credit: "NASA, ESA, STScI, J. Hester and P. Scowen (Arizona State University), 1 April 1995. Hubble WFPC2. Public domain.",
+      sourceUrl: "https://hubblesite.org/contents/media/images/1995/44/378-Image.html" },
+    assets: [{ label: "plate", src: WM("Pillars of Creation.jpg") }],
+    look: "The Eagle Nebula, M16, about 6,500 light years away. Hubble WFPC2, 1 April 1995.",
+    commit: {
+      prompt: "Which lens applies to this photograph?",
+      note: "Name the mechanism before you know what was done.",
+      options: LENS_OPTIONS
+    },
+    context: [
+      "Hubble's camera takes no colour. It records grey images through narrow filters. Each filter lets through the light of one element: oxygen at 502 nanometres, hydrogen at 656, sulphur at 673.",
+      "Three grey images are then combined, and each one is given a colour channel. A person decides which filter becomes which colour, and that decision does not follow the order of the wavelengths."
+    ],
+    probe: {
+      prompt: "Give each filter the colour channel that the Hubble palette uses.",
+      note: "The picture stays grey until you answer. Three filters, three channels.",
+      tools: ["colour"], grade: "colour",
+      colourFilters: [
+        { id: "oiii", label: "O III — oxygen, 502 nm" },
+        { id: "ha", label: "H-alpha — hydrogen, 656 nm" },
+        { id: "sii", label: "S II — sulphur, 673 nm" }
+      ],
+      colourAnswer: { oiii: "blue", ha: "green", sii: "red" }
+    },
+    reveal: {
+      correct: "Yes. Sulphur to red, hydrogen to green, oxygen to blue. This spreads three very close wavelengths across the three channels, so you can see the structure.",
+      incorrect: "The Hubble palette is sulphur to red, hydrogen to green, oxygen to blue. Following the wavelengths would put hydrogen and sulphur almost on top of each other, and the shapes would disappear.",
+      extra: "Every colour here tells you which element is glowing where. Read like that, the picture is a measurement. Read as a window, it shows a colour that nothing there has."
+    },
+    andYet: {
+      prompt: "Nobody could ever see these colours. Is this still a photograph, or is it a chart?",
+      canonical: "Each colour records which element is glowing where, and the key is published with the image, so any astronomer can read the data back out. This is a chart that happens to be beautiful, not a photograph that has been improved."
+    },
+    principle: {
+      canonical: "Colour that nobody could ever see can still be evidence, as long as the key travels with the picture. Hiding the key would be the deception, not choosing the colours.",
+      verdict: "acceptable"
+    },
+    teacherNotes: "Closes Unit 4. Students have spent four cards learning that editing conceals; this one shows editing carrying information. Ask what would have to change for the same file to become dishonest."
+  },
+  {
+    id: "migrantmother", ref: "27", unit: 6, unitLabel: "Unit 6 · capstone", lens: "one-frame-of-many", tier: "core",
+    ratio: 960 / 1248, sensitivity: "discussion", lensRetrieval: true,
+    rights: { status: "public-domain", display: "host", holder: "Library of Congress",
+      credit: "Dorothea Lange, March 1936. Farm Security Administration collection, Library of Congress, LC-DIG-fsa-8b29516. Public domain.",
+      sourceUrl: "https://www.loc.gov/pictures/item/2017762891/" },
+    assets: [{ label: "plate", src: WM("Lange-MigrantMother02.jpg") }],
+    look: "A pea-pickers' camp beside the highway at Nipomo, California. March 1936.",
+    commit: {
+      prompt: "Which lens applies to this photograph?",
+      note: "The capstone. Every mechanism in the deck is available to you here.",
+      options: LENS_OPTIONS
+    },
+    context: [
+      "Lange stopped for about ten minutes and took six photographs, moving closer each time. This is the last one. The others show the shelter, an older daughter, and a baby feeding. In the negative of this frame there was a thumb holding the tent pole at the bottom right. It was removed before publication.",
+      "The caption sent out with it said: very poor pea pickers in California, a mother of seven children, aged thirty-two. Florence Owens Thompson was thirty-two and her children were with her. She said later that she had been told the pictures would not be published, and she never received a copy."
+    ],
+    probe: {
+      prompt: "The caption says pea pickers. What in this picture supports that?",
+      note: "Use the crop handles. Cut the frame down to whatever really shows evidence.",
+      tools: ["crop"], grade: "options",
+      options: [
+        { key: "nothing", text: "Nothing. There is no field, no crop, no work and no camp in the picture.", correct: true },
+        { key: "clothes", text: "Their clothes show farm work." },
+        { key: "tent", text: "The canvas behind them shows a workers' camp." },
+        { key: "faces", text: "The children's faces show hunger." }
+      ]
+    },
+    reveal: {
+      correct: "Yes. A woman, three children and a piece of canvas. Pea pickers, seven children, thirty-two years old, California, March: all of that comes from outside the picture.",
+      incorrect: "Crop it down and look. No field, no crop, no work, no camp — a woman, three children and canvas. Every fact in that caption comes from outside the picture.",
+      extra: "This is not an accusation. It is what photographs are. The picture carries what things looked like; words carry everything else. The other five frames from those ten minutes are in the same public archive."
+    },
+    andYet: {
+      prompt: "This photograph brought government food to that camp within days. Does that outweigh a caption she could not support?",
+      canonical: "She was paid to make the case for food aid, and she made it in ten minutes, with her name on the picture. The frame she chose is the one that worked — and the other five are in the same public archive, so anyone can check her choice. Very few photographers make that possible."
+    },
+    principle: {
+      canonical: "Every published photograph is one choice out of frames you never see. A picture cannot say \"this happened\". It can say \"this is what I chose, and here is what I chose it from\".",
+      verdict: "unresolved"
+    },
+    teacherNotes: "Capstone. Ask which of the six frames they would have wired, then what their own crop asserts. Thompson's later objection belongs here: consent is not one of the seven lenses, and this is where students notice the gap."
+  },
+  {
+    id: "lunch", ref: "05", unit: 1, unitLabel: "Unit 1", lens: "staged", tier: "core",
+    ratio: 960 / 741, sensitivity: "none",
+    rights: { status: "embed", display: "embed", holder: "Wikimedia Commons",
+      credit: "Photographer disputed, 29 September 1932. Rockefeller Center construction publicity. Reproduced from Wikimedia Commons.",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Lunch_atop_a_Skyscraper.jpg" },
+    assets: [{ label: "plate", src: WM("Lunch atop a Skyscraper.jpg") }],
+    look: "The steel frame of the RCA Building, Rockefeller Center, New York. 29 September 1932.",
+    commit: {
+      prompt: "What do you think is happening in this photograph?",
+      note: "Ungraded. Say what you take it to be.",
+      options: [
+        { key: "break", text: "Steel workers having their lunch break, photographed as they were." },
+        { key: "pr", text: "A publicity photograph arranged during building work." },
+        { key: "composite", text: "Two photographs joined together: men in a studio, the beam on site." },
+        { key: "cant", text: "The picture cannot tell you which." }
+      ]
+    },
+    context: [
+      "The men are real steel workers and the beam really is on the sixty-ninth floor of a building under construction. The height is not faked, and men did eat lunch up there.",
+      "The pictures were taken for the building's publicity campaign. Other photographs from the same afternoon survive, including one of the same men lying asleep on the beam. Nobody is sure who took them."
+    ],
+    probe: {
+      prompt: "Use the loupe along the beam. What in the picture suggests it was arranged?",
+      note: "Not what you have heard. What the picture shows.",
+      tools: ["loupe"], grade: "options",
+      options: [
+        { key: "row", text: "The men sit evenly along the beam, all facing the same way, and nobody is working.", correct: true },
+        { key: "harness", text: "They are wearing safety belts that have been painted out." },
+        { key: "sky", text: "The sky behind them is a painted background." },
+        { key: "shadow", text: "The shadows on the beam fall in two different directions." }
+      ]
+    },
+    reveal: {
+      correct: "Yes. An even row, one direction, nobody working. That is an arrangement, not a lunch break.",
+      incorrect: "There are no safety belts, no painted background and no strange shadows. The men sit in an even row, all facing one way, and nobody is working. That is an arrangement.",
+      extra: "The height, the beam and the men are exactly as true as they look. Only the moment was arranged."
+    },
+    andYet: {
+      prompt: "The men really did work at that height. Does that make the arranged photograph fair?",
+      canonical: "These men worked at that height every day with no safety equipment, and the picture showed that to millions of people who would never go up there. Arranging a lunch break is not inventing one, and nobody was told anything false about the job."
+    },
+    principle: {
+      canonical: "The men and the height are real; the moment is not. Printed without saying that it was made for a publicity campaign, the picture pretends to be something it never was.",
+      verdict: "deceptive"
+    },
+    teacherNotes: "Good early pairing with Fenton: both arrange, neither invents. Ask what a caption would have to say for this to be honest."
+  },
+  {
+    id: "lochness", ref: "07", unit: 2, unitLabel: "Unit 2", lens: "cropped", tier: "extended",
+    ratio: 960 / 720, sensitivity: "none",
+    rights: { status: "embed", display: "embed", holder: "Wikimedia Commons",
+      credit: "Attributed to Robert Kenneth Wilson, published in the Daily Mail, 21 April 1934. Reproduced from Wikimedia Commons.",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Loch_Ness_Monster.jpg" },
+    assets: [{ label: "plate", src: WM("Loch Ness Monster.jpg") }],
+    look: "Loch Ness, Scotland. Published 21 April 1934.",
+    commit: {
+      prompt: "What is in this photograph?",
+      note: "Ungraded. Answer from the frame you can see.",
+      options: [
+        { key: "large", text: "A large animal, some distance from the camera." },
+        { key: "small", text: "A small object, close to the camera." },
+        { key: "retouch", text: "A picture that has been altered by hand." },
+        { key: "cant", text: "Nothing in the picture tells you the size." }
+      ]
+    },
+    context: [
+      "The Daily Mail published it as \"the surgeon's photograph\", on the word of a London doctor who did not want his name attached to the creature. The version that spread is a tight crop of a much wider picture.",
+      "In 1994 Christian Spurling explained how the object was made: a model head and neck fixed to a toy submarine, about thirty centimetres high, floated near the shore."
+    ],
+    probe: {
+      prompt: "Drag the crop wider and tighter. What is missing that would tell you the size?",
+      note: "The answer is something that is not there. Name it.",
+      tools: ["crop"], grade: "options",
+      options: [
+        { key: "scale", text: "Anything of known size — a shore, a boat, a bird — to compare it with.", correct: true },
+        { key: "colour", text: "Colour, to separate the object from the water." },
+        { key: "focus", text: "Sharper focus on the object." },
+        { key: "second", text: "A second photograph from another angle." }
+      ]
+    },
+    reveal: {
+      correct: "Yes. Water gives you no sense of size. With no shore and no known object in the frame, a small model and a large animal make the same picture.",
+      incorrect: "Colour, focus and another angle would not help. Water gives you no sense of size: with nothing of known size in the frame, a thirty-centimetre model and a ten-metre animal look the same.",
+      extra: "The wider picture included the shore. The crop that made this photograph famous is the crop that removed the only way of checking it."
+    },
+    andYet: {
+      prompt: "In 1934 there was no way to test a print. Was the newspaper wrong to publish it?",
+      canonical: "They published what they had, with the name of a respected man behind it, at a time when there was no way to test a print. Cutting a picture tighter is something every newspaper does."
+    },
+    principle: {
+      canonical: "A picture with nothing of known size in it cannot prove how big something is. Cropping that out changes nothing inside the picture; it removes the one thing that would have let a reader check it.",
+      verdict: "deceptive"
+    },
+    teacherNotes: "Students want to talk about the hoax. Keep them on the crop: the hoax needed the crop to work, and the same crop logic runs through Firdos Square and Che."
+  },
+  {
+    id: "che", ref: "09", unit: 2, unitLabel: "Unit 2", lens: "cropped", tier: "core",
+    ratio: 960 / 1230, sensitivity: "none",
+    rights: { status: "embed", display: "embed", holder: "Wikimedia Commons",
+      credit: "Alberto Korda, 5 March 1960, Havana. Reproduced from Wikimedia Commons.",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:CheHigh.jpg" },
+    assets: [{ label: "plate", src: WM("CheHigh.jpg") }],
+    look: "A memorial service in Havana, Cuba. 5 March 1960.",
+    commit: {
+      prompt: "What is this photograph?",
+      note: "Ungraded.",
+      options: [
+        { key: "sitting", text: "A portrait arranged with the subject." },
+        { key: "crowd", text: "A photograph taken from a crowd at an event." },
+        { key: "official", text: "An official government photograph." },
+        { key: "cant", text: "The picture cannot tell you." }
+      ]
+    },
+    context: [
+      "Korda took two photographs of Guevara at a memorial service for the people killed in the La Coubre explosion. On the negative there is a man's face at the left edge and palm leaves at the right.",
+      "He cut both away. The print stayed in his studio for seven years before it left Cuba and became the most reproduced photograph of the century."
+    ],
+    probe: {
+      prompt: "Drag the crop out and back in. What does the tight crop remove?",
+      note: "Name what the picture can no longer tell you.",
+      tools: ["crop"], grade: "options",
+      options: [
+        { key: "setting", text: "The crowd and the place, which show that he is at a funeral.", correct: true },
+        { key: "retouch", text: "Proof that the face has been altered." },
+        { key: "second", text: "Another man in uniform standing beside him." },
+        { key: "date", text: "A date printed on the edge of the negative." }
+      ]
+    },
+    reveal: {
+      correct: "Yes. Cropped, the picture stops being a photograph of a funeral and becomes a face against the sky.",
+      incorrect: "There is no retouching and no date stamp. What the crop removes is the place: cropped, a photograph of a funeral becomes a face against the sky.",
+      extra: "Nothing was added and nothing was moved. One picture was chosen out of a bigger one."
+    },
+    andYet: {
+      prompt: "Korda cut away the crowd, not the man. Is that composing a picture, or changing the record?",
+      canonical: "Cropping is part of composing a picture, and he removed nothing that changed what Guevara was doing or where he stood. He took no money for the image for forty years."
+    },
+    principle: {
+      canonical: "A crop that removes the place removes the event and leaves a face. That is how a record becomes a symbol — which is fair, as long as nobody says the symbol is still the record.",
+      verdict: "unresolved"
+    },
+    teacherNotes: "Pair with Loch Ness. Same operation, different verdict, and students should be able to say why."
+  },
+  {
+    id: "vjday", ref: "14", unit: 3, unitLabel: "Unit 3", lens: "miscaptioned", tier: "core",
+    ratio: 960 / 989, sensitivity: "discussion", lensRetrieval: true,
+    rights: { status: "public-domain", display: "host", holder: "U.S. Navy / National Archives",
+      credit: "Victor Jorgensen, 14 August 1945. U.S. Navy, National Archives 80-G-377094. Public domain.",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Kissing_the_War_Goodbye.jpg" },
+    assets: [{ label: "plate", src: WM("Kissing the War Goodbye.jpg") }],
+    look: "Times Square, New York. 14 August 1945.",
+    commit: {
+      prompt: "Which lens applies to this photograph?",
+      note: "Name the mechanism first.",
+      options: LENS_OPTIONS
+    },
+    context: [
+      "Two photographers were standing a few metres apart. The famous version was taken by Alfred Eisenstaedt for Life magazine; this one was taken at the same moment by a Navy photographer. Neither of them asked for names.",
+      "For decades the picture was described as a kiss between a sailor and his girlfriend. They did not know each other. Greta Zimmer Friedman, a dental assistant, said later that she was grabbed, and that it was not her choice."
+    ],
+    probe: {
+      prompt: "What can this picture prove about the two people in it?",
+      note: "Only what the picture carries. The rest is caption.",
+      tools: ["loupe"], grade: "options",
+      options: [
+        { key: "posture", text: "That a man in uniform is kissing a woman in Times Square that day — and nothing about their relationship.", correct: true },
+        { key: "strangers", text: "That they do not know each other." },
+        { key: "couple", text: "That they are a couple." },
+        { key: "consent", text: "That she wanted to be kissed." }
+      ]
+    },
+    reveal: {
+      correct: "Yes. A picture can show a position, and nothing more. Strangers, sweethearts, willing, unwilling: none of that is in the frame.",
+      incorrect: "The picture cannot show that they are strangers, that they are a couple, or that she agreed. It shows two people in a street on one day. Everything else came from captions.",
+      extra: "Two photographers, two pictures, one moment — and eighty years of a story that neither of them wrote."
+    },
+    andYet: {
+      prompt: "Neither photographer wrote the love story. Is the picture still responsible for it?",
+      canonical: "Both men photographed something that happened in public on the day a war ended, and neither of them wrote the love story. That was added by readers over many years."
+    },
+    principle: {
+      canonical: "A photograph records a position, not a relationship. When a caption adds consent, the picture is being asked to prove something it cannot.",
+      verdict: "unresolved"
+    },
+    teacherNotes: "Sensitivity: discussion. Friedman's account belongs in the room, but keep the analytical question in front — what the frame can and cannot establish."
+  },
+  {
+    id: "reichstag", ref: "16", unit: 4, unitLabel: "Unit 4", lens: "retouched", tier: "core",
+    ratio: 960 / 693, sensitivity: "none", lensRetrieval: true,
+    rights: { status: "embed", display: "embed", holder: "Wikimedia Commons",
+      credit: "Yevgeny Khaldei, 2 May 1945, Berlin. Reproduced from Wikimedia Commons.",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Raising_a_flag_over_the_Reichstag.jpg" },
+    assets: [{ label: "plate", src: WM("Raising a flag over the Reichstag.jpg") }],
+    look: "The roof of the Reichstag, Berlin. 2 May 1945.",
+    commit: {
+      prompt: "Which lens applies to this photograph?",
+      note: "Name the mechanism before you are told what was done.",
+      options: LENS_OPTIONS
+    },
+    context: [
+      "Khaldei arrived after the fighting on the roof was over. He brought a flag sewn from tablecloths and arranged the scene with soldiers he found there. He took about three dozen photographs.",
+      "Before the picture was published, it was worked on by hand: the smoke over the city was made darker, and one object was removed from the wrist of the soldier holding up the flag-bearer."
+    ],
+    probe: {
+      prompt: "One object was removed from the supporting soldier's wrist before publication. What was it?",
+      note: "The loupe is on. Look at the wrists and at the skyline.",
+      tools: ["loupe"], grade: "options",
+      options: [
+        { key: "watch", text: "A second wristwatch, which would suggest stealing.", correct: true },
+        { key: "rifle", text: "A rifle on his back." },
+        { key: "flag", text: "A second, smaller flag." },
+        { key: "band", text: "An armband with a unit number." }
+      ]
+    },
+    reveal: {
+      correct: "Yes. A second watch on the same arm was painted out, and the smoke over the city was darkened at the same time.",
+      incorrect: "Not the rifle, the flag or the armband. A second wristwatch on the same arm was painted out, because it would have suggested stealing — and the smoke over the city was darkened as well.",
+      extra: "Two edits on one picture. One changes the weather. The other changes what the soldiers were doing up there."
+    },
+    andYet: {
+      prompt: "The Reichstag really did fall. Does that make the retouching acceptable?",
+      canonical: "The Reichstag really did fall, and these were soldiers who had fought for it. The retouching removed a suggestion, not a fact about the battle. Photographers on every side were doing at least this much, and his editor would have done it for him."
+    },
+    principle: {
+      canonical: "Removing a detail because of what people would think about it is an edit to the story, not to the mood. The smoke changes the weather; the watch changes the account.",
+      verdict: "deceptive"
+    },
+    teacherNotes: "The two edits on one print are the teaching object. Ask which of them they would have signed off, and what the difference is."
+  },
+  {
+    id: "unseen", ref: "—", unit: 9, unitLabel: "No scaffolding", lens: "—", tier: "core",
+    ratio: 960 / 968, sensitivity: "none", mode: "unseen",
+    rights: { status: "public-domain", display: "host", holder: "NASA",
+      credit: "Buzz Aldrin, 20 July 1969. NASA AS11-40-5878. Public domain.",
+      sourceUrl: "https://www.nasa.gov/image-article/apollo-11-bootprint/" },
+    assets: [{ label: "plate", src: WM("Apollo 11 bootprint.jpg") }],
+    look: "The Sea of Tranquility, the Moon. 20 July 1969.",
+    unseen: {
+      prompt: "Name what you cannot tell from this photograph.",
+      note: "No background, no options, no answer, no lens. Only the picture.",
+      after: "Recorded. One thing worth knowing: this picture is usually captioned as the first footprint on the Moon. It is not. Aldrin made it on purpose, as part of an experiment on the soil, after both men had been walking around for some time — and the boot is his."
+    },
+    teacherNotes: "Run at the end of every session. Collect answers verbatim; the good ones name absences rather than doubts."
+  }
+];
+
+CARDS.sort((a, b) => (Number(a.ref) || 999) - (Number(b.ref) || 999));
+
+const BEATS = [
+  { num: "01", label: "look" }, { num: "02", label: "commit" }, { num: "03", label: "context" },
+  { num: "04", label: "probe" }, { num: "05", label: "reveal" }, { num: "06", label: "and yet" },
+  { num: "07", label: "principle" }
+];
+const CHANNELS = [{ id: "red", hex: "#b8422f" }, { id: "green", hex: "#4e7f52" }, { id: "blue", hex: "#2946c8" }];
+const STORE = "loupe.responses.v1";
+const confWord = (v) => v < 20 ? "a guess" : v < 40 ? "a hunch" : v < 60 ? "fairly sure" : v < 80 ? "confident" : "certain";
+
+class Component extends DCLogic {
+  state = {
+    view: "index", idx: 0, beat: 0, teacher: false,
+    ab: 0, rotate: 0, loupe: null, hotspot: null, colour: {},
+    crop: { x: 6, y: 6, w: 88, h: 88 }, data: {}
+  };
+
+  componentDidMount() {
+    try {
+      const raw = localStorage.getItem(STORE);
+      if (raw) this.setState({ data: JSON.parse(raw) });
+    } catch (e) { /* first run */ }
+    this._up = (e) => { this._drag = null; };
+    this._move = (e) => this.dragMove(e);
+    window.addEventListener("pointerup", this._up);
+    window.addEventListener("pointermove", this._move);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("pointerup", this._up);
+    window.removeEventListener("pointermove", this._move);
+  }
+
+  playTurn() {
+    try {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      this._ac = this._ac || new Ctx();
+      const ac = this._ac;
+      if (ac.state === "suspended") ac.resume();
+      const dur = 0.55, sr = ac.sampleRate, len = Math.floor(sr * dur);
+      const buf = ac.createBuffer(1, len, sr), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) {
+        const t = i / sr;
+        const env = Math.pow(Math.max(0, 1 - t / dur), 2.4) * Math.min(1, t * 30);
+        const rustle = 0.6 + 0.4 * Math.sin(t * 61);
+        d[i] = (Math.random() * 2 - 1) * env * rustle * 0.55;
+      }
+      const src = ac.createBufferSource(); src.buffer = buf;
+      const bp = ac.createBiquadFilter(); bp.type = "bandpass"; bp.Q = 0.7;
+      const t0 = ac.currentTime;
+      bp.frequency.setValueAtTime(700, t0);
+      bp.frequency.exponentialRampToValueAtTime(2800, t0 + 0.2);
+      bp.frequency.exponentialRampToValueAtTime(600, t0 + 0.55);
+      const g = ac.createGain(); g.gain.value = 0.3;
+      src.connect(bp); bp.connect(g); g.connect(ac.destination);
+      src.start();
+    } catch (e) { /* no audio available */ }
+  }
+
+  card() { return CARDS[this.state.idx]; }
+  rec(id) { return this.state.data[id] || {}; }
+  save(patch, id) {
+    const cid = id || this.card().id;
+    const data = Object.assign({}, this.state.data);
+    data[cid] = Object.assign({}, data[cid], patch);
+    this.setState({ data });
+    try { localStorage.setItem(STORE, JSON.stringify(data)); } catch (e) { /* full or blocked */ }
+  }
+
+  plateSrc() { const c = this.card(); return c.assets[Math.min(this.state.ab, c.assets.length - 1)].src; }
+
+  align() {
+    const c = this.card(), i = Math.min(this.state.ab, c.assets.length - 1);
+    const stored = (this.state.aligns || {})[c.id + ":" + i];
+    const a = stored || c.assets[i].align || {};
+    return { scale: a.scale == null ? 1 : a.scale, dx: a.dx == null ? 0 : a.dx, dy: a.dy == null ? 0 : a.dy };
+  }
+
+  fit() {
+    const c = this.card(), i = Math.min(this.state.ab, c.assets.length - 1);
+    const ir = c.assets[i].ratio || c.ratio, fr = c.ratio, a = this.align();
+    const sx = (ir >= fr ? 100 : 100 * ir / fr) * a.scale;
+    const sy = (ir >= fr ? 100 * fr / ir : 100) * a.scale;
+    return { sx, sy, px: 50 + a.dx, py: 50 + a.dy };
+  }
+
+  pct(e) {
+    const el = this._plate; if (!el) return null;
+    const r = el.getBoundingClientRect();
+    return { x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100, r };
+  }
+
+  dragMove(e) {
+    if (!this._drag) return;
+    const p = this.pct(e); if (!p) return;
+    const d = this._drag, c = Object.assign({}, this.state.crop);
+    const x = Math.max(0, Math.min(100, p.x)), y = Math.max(0, Math.min(100, p.y));
+    if (d.indexOf("w") > -1) { const r = c.x + c.w; c.x = Math.min(x, r - 8); c.w = r - c.x; }
+    if (d.indexOf("e") > -1) { c.w = Math.max(8, x - c.x); }
+    if (d.indexOf("n") > -1) { const b = c.y + c.h; c.y = Math.min(y, b - 8); c.h = b - c.y; }
+    if (d.indexOf("s") > -1) { c.h = Math.max(8, y - c.y); }
+    this.setState({ crop: c });
+  }
+
+  probeCorrect() {
+    const c = this.card(), r = this.rec(c.id), p = c.probe;
+    if (p.grade === "options") { const o = p.options.find(x => x.correct); return r.probe === o.key; }
+    if (p.grade === "hotspot") {
+      const h = r.hotspot, z = p.hotspot; if (!h) return false;
+      return h.x >= z.x && h.x <= z.x + z.w && h.y >= z.y && h.y <= z.y + z.h;
+    }
+    if (p.grade === "rotate") return p.rotateAnswer.indexOf(((this.state.rotate % 360) + 360) % 360) > -1;
+    if (p.grade === "colour") {
+      const a = p.colourAnswer, m = this.state.colour;
+      return Object.keys(a).every(k => m[k] === a[k]);
+    }
+    return false;
+  }
+
+  probeReady() {
+    const c = this.card(), r = this.rec(c.id), p = c.probe;
+    if (p.grade === "options") return !!r.probe;
+    if (p.grade === "hotspot") return !!r.hotspot;
+    if (p.grade === "rotate") return this.state.rotate !== 0;
+    if (p.grade === "colour") return Object.keys(this.state.colour).length === 3 &&
+      new Set(Object.values(this.state.colour)).size === 3;
+    return false;
+  }
+
+  open(i) {
+    const c = CARDS[i], r = this.state.data[c.id] || {};
+    this.setState({
+      view: "card", idx: i, beat: r.beat || 0, ab: 0, rotate: 0, loupe: null,
+      hotspot: null, colour: r.colour || {}, crop: { x: 6, y: 6, w: 88, h: 88 }
+    });
+    if (typeof window !== "undefined") window.scrollTo(0, 0);
+  }
+  advance = () => {
+    const b = Math.min(6, this.state.beat + 1);
+    this.setState({ beat: b, loupe: null }); this.save({ beat: b });
+  };
+
+  exportCsv = () => {
+    const head = ["plate", "card", "lens", "commit", "confidence", "probe_correct", "and_yet", "principle", "verdict"];
+    const rows = CARDS.map(c => {
+      const r = this.rec(c.id), opt = (c.commit && c.commit.options || []).find(o => o.key === r.commit);
+      return [c.ref, c.id, c.lens, opt ? opt.text : (r.principle && c.mode === "unseen" ? r.principle : ""),
+        r.conf == null ? "" : r.conf, r.probeCorrect == null ? "" : (r.probeCorrect ? "yes" : "no"),
+        r.andYet || "", r.principle || "", c.principle ? c.principle.verdict : ""]
+        .map(v => '"' + String(v).replace(/"/g, '""') + '"').join(",");
+    });
+    const blob = new Blob([head.join(",") + "\n" + rows.join("\n")], { type: "text/csv" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = "loupe-responses.csv"; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  };
+
+  audit() {
+    return CARDS.map(c => {
+      const fails = [];
+      if (!c.rights || !c.rights.credit || !c.rights.holder || !c.rights.sourceUrl) fails.push("incomplete rights");
+      if (c.rights.display === "host" && c.rights.status !== "public-domain") fails.push("host on non-PD");
+      if (c.sensitivity === "graphic" && c.rights.display !== "link-out") fails.push("graphic must link out");
+      return { ref: c.ref, status: c.rights.status + " · " + c.rights.display,
+        verdict: fails.length ? fails.join(" / ") : "pass",
+        color: fails.length ? RED : GREEN };
+    });
+  }
+
+  renderVals() {
+    const s = this.state, c = this.card(), r = this.rec(c.id), unseen = c.mode === "unseen";
+    const lensFrom = this.props.lensRetrievalFrom == null ? 13 : this.props.lensRetrievalFrom;
+    const retrieval = !unseen && (Number(c.ref) >= lensFrom || c.lensRetrieval);
+    const tools = (c.probe && c.probe.tools) || [];
+    const at = (n) => s.view === "card" && !unseen && s.beat === n;
+    const answered = r.probeAnswered && s.beat >= 4;
+    const correct = !!r.probeCorrect;
+
+    const commitOpts = (retrieval ? LENS_OPTIONS : (c.commit ? c.commit.options : [])).map(o => ({
+      key: o.key, text: o.text, mark: r.commit === o.key ? "▣" : "▢",
+      color: r.commit === o.key ? BLUE : INK,
+      bg: r.commit === o.key ? "rgba(41,70,200,.06)" : "transparent",
+      onPick: () => this.save({ commit: o.key, conf: r.conf == null ? 50 : r.conf })
+    }));
+    const probeOpts = (c.probe && c.probe.options ? c.probe.options : []).map(o => {
+      const picked = r.probe === o.key;
+      let color = picked ? BLUE : INK, mark = picked ? "▣" : "▢";
+      if (answered) {
+        if (o.correct) { color = GREEN; mark = "▣"; }
+        else if (picked) { color = RED; mark = "▨"; }
+        else { color = DIM; }
+      }
+      return { key: o.key, text: o.text, mark, color,
+        bg: picked ? "rgba(41,70,200,.06)" : "transparent",
+        onPick: () => { if (!answered) this.save({ probe: o.key }); } };
+    });
+
+    const colourRows = (c.probe && c.probe.colourFilters ? c.probe.colourFilters : []).map(f => ({
+      label: f.label,
+      swatches: CHANNELS.map(ch => ({
+        bg: s.colour[f.id] === ch.id ? ch.hex : "rgba(255,255,255,.35)",
+        border: s.colour[f.id] === ch.id ? ch.hex : "#cdc8ba",
+        onPick: () => { if (answered) return;
+          const m = Object.assign({}, s.colour);
+          Object.keys(m).forEach(k => { if (m[k] === ch.id) delete m[k]; });
+          m[f.id] = ch.id; this.setState({ colour: m }); this.save({ colour: m }); }
+      }))
+    }));
+
+    const plateTools = [];
+    if (tools.indexOf("ab") > -1) c.assets.forEach((a, i) => plateTools.push({
+      label: a.label, cursor: "pointer",
+      color: s.ab === i ? BLUE : MUTED, underline: s.ab === i ? BLUE : "transparent",
+      onPick: () => this.setState({ ab: i })
+    }));
+    if (tools.indexOf("rotate") > -1) {
+      plateTools.push({ label: "turn left", cursor: "pointer", color: MUTED, underline: "transparent",
+        onPick: () => this.setState({ rotate: s.rotate - 90 }) });
+      plateTools.push({ label: "turn right", cursor: "pointer", color: MUTED, underline: "transparent",
+        onPick: () => this.setState({ rotate: s.rotate + 90 }) });
+      plateTools.push({ label: ((s.rotate % 360) + 360) % 360 + "°", cursor: "default", color: BLUE, underline: "transparent", onPick: () => {} });
+    }
+    if (tools.indexOf("crop") > -1) plateTools.push({
+      label: "reset crop", cursor: "pointer", color: MUTED, underline: "transparent",
+      onPick: () => this.setState({ crop: { x: 6, y: 6, w: 88, h: 88 } })
+    });
+
+
+    const live = s.view === "card" && !unseen && s.beat >= 3;
+    const fit = this.fit();
+    const loupeOn = tools.indexOf("loupe") > -1 && s.loupe && live;
+    const zoom = 3.4;
+    const rect = s.loupe && s.loupe.r;
+    const cropHandles = [
+      { left: "0%", top: "0%", cursor: "nwse-resize", key: "nw" },
+      { left: "100%", top: "0%", cursor: "nesw-resize", key: "ne" },
+      { left: "0%", top: "100%", cursor: "nesw-resize", key: "sw" },
+      { left: "100%", top: "100%", cursor: "nwse-resize", key: "se" }
+    ].map(h => Object.assign({}, h, {
+      down: (e) => { e.stopPropagation(); this._drag = h.key; }
+    }));
+
+    const rows = [];
+    let lastUnit = null;
+    CARDS.forEach((cd, i) => {
+      const first = cd.unit !== lastUnit; lastUnit = cd.unit;
+      const rr = this.state.data[cd.id] || {};
+      const done = !!rr.done;
+      const w = [280, 236, 310, 252, 268, 300, 226, 262][i % 8];
+      rows.push({
+        unit: cd.mode === "unseen" ? "No scaffolding" : "Unit " + (i + 1), page: Math.floor(i / 6),
+        bg: "url(" + cd.assets[0].src + ")", ratio: String(cd.ratio),
+        width: w + "px", desc: cd.look,
+        transform: "rotate(" + [-2.2, 1.4, -1, 2.4, -1.8, .8, -2.6, 1.8][i % 8] + "deg)",
+        offset: [0, 46, 14, 62, 8, 38, 26, 54][i % 8] + "px",
+        ref: cd.ref, title: this.titleOf(cd),
+        lens: cd.mode === "unseen" ? " · no scaffolding" : (done ? " · " + lensLabel(cd.lens) : ""),
+        mark: done ? "filed" : (rr.beat ? "in hand" : "unopened"),
+        markColor: done ? BLUE : (rr.beat ? RED : DIM),
+        numColor: done ? BLUE : MUTED,
+        onOpen: () => this.open(i)
+      });
+    });
+
+    const got = {};
+    CARDS.forEach(cd => { if ((this.state.data[cd.id] || {}).done && cd.lens !== "—") got[cd.lens] = true; });
+    const lenses = LENSES.map(l => ({ label: l.label, gloss: l.gloss, mark: got[l.id] ? "▣" : "▢", color: got[l.id] ? BLUE : DIM }));
+
+    const pages = Math.max(1, Math.ceil(rows.length / 6));
+    const nextUnopened = CARDS.findIndex(cd => !(this.state.data[cd.id] || {}).done);
+    const reviewRows = CARDS.filter(cd => !cd.mode).map((cd, i) => {
+      const rr = this.state.data[cd.id] || {};
+      const idx = CARDS.indexOf(cd);
+      const conf = rr.conf == null ? null : rr.conf;
+      let resultText = "not reached", color = DIM;
+      if (rr.probeAnswered) {
+        if (rr.probeCorrect) { resultText = conf != null && conf < 40 ? "right, unsure" : "right"; color = conf != null && conf >= 60 ? GREEN : MUTED; }
+        else { resultText = conf != null && conf >= 60 ? "sure and wrong" : "wrong"; color = conf != null && conf >= 60 ? RED : MUTED; }
+      }
+      return { ref: cd.ref, title: this.titleOf(cd),
+        confText: conf == null ? "—" : conf + "% · " + confWord(conf),
+        resultText, color, onOpen: () => this.open(idx) };
+    });
+    const sureWrong = reviewRows.filter(x => x.resultText === "sure and wrong").length;
+
+    const quoted = (() => {
+      const list = retrieval ? LENS_OPTIONS : (c.commit ? c.commit.options : []);
+      const o = list.find(x => x.key === r.commit);
+      return o ? o.text : "nothing recorded";
+    })();
+
+    return {
+      grain: this.props.grain == null ? 0.42 : this.props.grain,
+      isIndex: s.view === "index", isCard: s.view === "card", isReview: s.view === "review",
+      teacherOpen: s.teacher && (this.props.showTeacherTools !== false),
+      teacherLabel: s.teacher ? "close teacher mode" : "teacher mode",
+      advance: this.advance,
+      showBeatBack: s.view === "card" && !unseen && s.beat > 0,
+      onBeatBack: () => { const b = Math.max(0, s.beat - 1); this.setState({ beat: b, loupe: null }); this.save({ beat: b }); },
+      goIndex: () => this.setState({ view: "index", page: 0 }),
+      goReview: () => this.setState({ view: "review" }),
+      toggleTeacher: () => this.setState({ teacher: !s.teacher }),
+
+      rows: rows.filter(x => x.page === (s.page || 0)),
+      onFirstPage: (s.page || 0) === 0,
+      showBack: (s.page || 0) > 0,
+      onBack: () => {
+        if (s.turn || (s.page || 0) === 0) return;
+        this.playTurn();
+        this.setState({ turn: "out" });
+        setTimeout(() => {
+          this.setState({ page: (s.page || 0) - 1, turn: "in" });
+          if (typeof window !== "undefined") window.scrollTo(0, 0);
+          setTimeout(() => this.setState({ turn: null }), 40);
+        }, 420);
+      },
+      pageLabel: (s.page || 0) < pages - 1 ? "turn the page" : "back to the first page",
+      sheetTransform: s.turn === "out" ? "rotateY(-88deg)" : s.turn === "in" ? "rotateY(74deg)" : "rotateY(0deg)",
+      sheetOpacity: s.turn ? "0.1" : "1",
+      sheetDur: s.turn === "in" ? "0s" : "0.42s",
+      onTurn: () => {
+        if (s.turn) return;
+        this.playTurn();
+        this.setState({ turn: "out" });
+        setTimeout(() => {
+          this.setState({ page: ((s.page || 0) + 1) % pages, turn: "in" });
+          if (typeof window !== "undefined") window.scrollTo(0, 0);
+          setTimeout(() => this.setState({ turn: null }), 40);
+        }, 420);
+      },
+      lenses, collected: Object.keys(got).length,
+      startLabel: nextUnopened < 0 ? "open the capstone again" : "begin at plate " + CARDS[Math.max(0, nextUnopened)].ref,
+      onStart: () => this.open(Math.max(0, nextUnopened)),
+
+      cRef: c.ref, cUnit: c.mode === "unseen" ? "No scaffolding" : "Unit " + (s.idx + 1), cLens: unseen ? "—" : lensLabel(c.lens),
+      cTitle: this.titleOf(c), cCredit: c.rights.credit, cSource: c.rights.sourceUrl,
+      cRights: c.rights.status + ", hosted from the holder's archive",
+      plateRatio: String(c.ratio), plateMaxW: "calc(64vh * " + c.ratio.toFixed(3) + ")",
+      plateBg: "url(" + this.plateSrc() + ")",
+      plateFilter: (tools.indexOf("colour") > -1 && !answered) ? "grayscale(1) contrast(1.05)" : "none",
+      plateRotate: String(s.rotate),
+      plateCursor: tools.indexOf("hotspot") > -1 && live && !answered ? "crosshair" : "default",
+      plateRef: (el) => { this._plate = el; },
+      onPlateMove: (e) => { if (tools.indexOf("loupe") > -1 && live) { const p = this.pct(e); if (p) this.setState({ loupe: p }); } },
+      onPlateLeave: () => { if (s.loupe) this.setState({ loupe: null }); },
+      onPlateClick: (e) => {
+        if (tools.indexOf("hotspot") > -1 && live && !answered) {
+          const p = this.pct(e); if (p) this.save({ hotspot: { x: p.x, y: p.y } });
+        }
+      },
+      plateTools,
+      toolHint: !live ? "" : tools.indexOf("loupe") > -1 ? "loupe live · 3.4×"
+        : tools.indexOf("hotspot") > -1 ? "click the frame"
+        : tools.indexOf("crop") > -1 ? "drag the corners"
+        : tools.indexOf("rotate") > -1 ? "turn the plate" : "",
+
+      plateSize: fit.sx.toFixed(2) + "% " + fit.sy.toFixed(2) + "%",
+      platePos: fit.px.toFixed(2) + "% " + fit.py.toFixed(2) + "%",
+      loupeShow: loupeOn ? "block" : "none",
+      loupeSize: rect ? (rect.width * fit.sx / 100 * zoom) + "px " + (rect.height * fit.sy / 100 * zoom) + "px" : "0 0",
+      loupePos: (() => {
+        if (!rect || !s.loupe) return "0 0";
+        const iw = rect.width * fit.sx / 100, ih = rect.height * fit.sy / 100;
+        const offX = -(iw - rect.width) * fit.px / 100, offY = -(ih - rect.height) * fit.py / 100;
+        const px = s.loupe.x / 100 * rect.width, py = s.loupe.y / 100 * rect.height;
+        return (-((px - offX) * zoom - 105)) + "px " + (-((py - offY) * zoom - 105)) + "px";
+      })(),
+      loupeX: s.loupe ? "calc(" + s.loupe.x + "% - 105px)" : "0",
+      loupeY: s.loupe ? "calc(" + s.loupe.y + "% - 105px)" : "0",
+
+      markShow: r.hotspot && live ? "block" : "none",
+      markX: r.hotspot ? r.hotspot.x + "%" : "0", markY: r.hotspot ? r.hotspot.y + "%" : "0",
+      regShow: answered && c.probe && c.probe.hotspot ? "block" : "none",
+      regX: c.probe && c.probe.hotspot ? c.probe.hotspot.x + "%" : "0",
+      regY: c.probe && c.probe.hotspot ? c.probe.hotspot.y + "%" : "0",
+      regW: c.probe && c.probe.hotspot ? c.probe.hotspot.w + "%" : "0",
+      regH: c.probe && c.probe.hotspot ? c.probe.hotspot.h + "%" : "0",
+      cropShow: tools.indexOf("crop") > -1 && s.beat >= 3 ? "block" : "none",
+      cropX: s.crop.x + "%", cropY: s.crop.y + "%", cropW: s.crop.w + "%", cropH: s.crop.h + "%",
+      cropHandles,
+
+      rail: BEATS.map((b, i) => ({ num: b.num, label: b.label,
+        color: unseen ? DIM : i === s.beat ? RED : i < s.beat ? MUTED : DIM })),
+      beatNum: unseen ? "—" : BEATS[s.beat].num, beatLabel: unseen ? "on your own" : BEATS[s.beat].label,
+
+      atLook: at(0), atCommit: at(1), atContext: at(2), atProbe: at(3),
+      atReveal: at(4), atAndYet: at(5), atPrinciple: at(6),
+      atUnseenAsk: s.view === "card" && unseen,
+
+      lookText: c.look,
+      lookNote: "When and where. Nothing else yet — no title, no framing, no hint of what is wrong with it.",
+      commitPrompt: retrieval ? "Which lens applies to this photograph?" : (c.commit ? c.commit.prompt : ""),
+      commitNote: c.commit ? c.commit.note : "",
+      commitOptions: commitOpts,
+      conf: r.conf == null ? 50 : r.conf, confWord: confWord(r.conf == null ? 50 : r.conf),
+      onConf: (e) => this.save({ conf: Number(e.target.value) }),
+      lockColor: r.commit ? BLUE : DIM, lockCursor: r.commit ? "pointer" : "not-allowed",
+      lockLabel: r.commit ? "lock it in" : "choose one first",
+      onLockCommit: () => { if (r.commit) this.advance(); },
+
+      contextParas: (c.context || []).map(t => ({ text: t })),
+
+      probePrompt: c.probe ? c.probe.prompt : "", probeNote: c.probe ? c.probe.note : "",
+      probeOptions: probeOpts, showProbeOptions: !!(c.probe && c.probe.options),
+      showColour: tools.indexOf("colour") > -1, colourRows,
+      showPlateAnswerNote: tools.indexOf("hotspot") > -1 || tools.indexOf("rotate") > -1,
+      plateAnswerNote: tools.indexOf("hotspot") > -1
+        ? (r.hotspot ? "Marked on the plate. Change it by clicking again." : "Click the plate to mark your answer.")
+        : "Turn the plate with the controls under it, then submit.",
+      submitColor: this.probeReady() ? BLUE : DIM,
+      submitCursor: this.probeReady() ? "pointer" : "not-allowed",
+      submitLabel: this.probeReady() ? "see what the frame supports" : "answer first",
+      onSubmitProbe: () => {
+        if (!this.probeReady()) return;
+        const ok = this.probeCorrect();
+        this.save({ probeAnswered: true, probeCorrect: ok, beat: 4 });
+        this.setState({ beat: 4, loupe: null });
+      },
+
+      quotedAnswer: quoted,
+      resultLabel: correct ? "your read holds" : "your read does not hold",
+      resultColor: correct ? GREEN : RED,
+      revealText: correct ? c.reveal.correct : c.reveal.incorrect,
+      revealExtra: c.reveal ? c.reveal.extra : "",
+
+      andYetPrompt: c.andYet ? c.andYet.prompt : "",
+      andYetValue: r.andYet || "",
+      onAndYet: (e) => this.save({ andYet: e.target.value }),
+      andYetShown: !!r.andYetShown,
+      andYetCanonical: c.andYet ? c.andYet.canonical : "",
+      andYetBtnColor: (r.andYet || "").trim() ? BLUE : DIM,
+      andYetBtnCursor: (r.andYet || "").trim() ? "pointer" : "not-allowed",
+      andYetBtnLabel: r.andYetShown ? "defence on the record" : ((r.andYet || "").trim() ? "show me the canonical defence" : "write one line first"),
+      onShowAndYet: () => { if ((r.andYet || "").trim()) this.save({ andYetShown: true }); },
+
+      principleValue: r.principle || "",
+      onPrinciple: (e) => this.save({ principle: e.target.value }),
+      principleShown: !!r.principleShown,
+      principleCanonical: c.principle ? c.principle.canonical : "",
+      verdictLabel: c.principle ? c.principle.verdict : "",
+      verdictColor: c.principle && c.principle.verdict === "acceptable" ? GREEN : c.principle && c.principle.verdict === "deceptive" ? RED : INK,
+      prinBtnColor: (r.principle || "").trim() ? BLUE : DIM,
+      prinBtnCursor: (r.principle || "").trim() ? "pointer" : "not-allowed",
+      prinBtnLabel: r.principleShown ? "yours is on the record" : ((r.principle || "").trim() ? "compare to the canonical" : "write yours first"),
+      onShowPrinciple: () => { if ((r.principle || "").trim()) this.save({ principleShown: true, done: true }); },
+      finishLabel: this.state.idx < CARDS.length - 1 ? "next plate" : "show my confidence review",
+      onFinish: () => { if (this.state.idx < CARDS.length - 1) this.open(this.state.idx + 1); else this.setState({ view: "review" }); },
+
+      unseenPrompt: unseen ? c.unseen.prompt : "", unseenNote: unseen ? c.unseen.note : "",
+      unseenAfter: unseen ? c.unseen.after : "",
+
+      reviewRows,
+      reviewNote: sureWrong
+        ? sureWrong + " of the plates you have worked went against you while you were sure. Those are the useful ones: reopen them and find the beat where the read went wrong."
+        : "Confident and wrong is the pairing worth practising. Nothing here yet — work a few plates and come back.",
+
+      showCalib: s.view === "card" && c.assets.length > 1,
+      calibPlate: c.assets[Math.min(s.ab, c.assets.length - 1)].label,
+      calibRows: [
+        { key: "scale", label: "scale", min: "0.6", max: "1.6", step: "0.005" },
+        { key: "dx", label: "shift x", min: "-50", max: "50", step: "0.5" },
+        { key: "dy", label: "shift y", min: "-50", max: "50", step: "0.5" }
+      ].map(k => ({
+        label: k.label, min: k.min, max: k.max, step: k.step,
+        value: String(this.align()[k.key]),
+        onChange: (e) => {
+          const key = c.id + ":" + Math.min(s.ab, c.assets.length - 1);
+          const aligns = Object.assign({}, s.aligns);
+          aligns[key] = Object.assign({}, this.align(), { [k.key]: Number(e.target.value) });
+          this.setState({ aligns });
+        }
+      })),
+      diffColor: s.diff ? BLUE : MUTED,
+      onDiff: () => this.setState({ diff: !s.diff }),
+      onResetAlign: () => {
+        const aligns = Object.assign({}, s.aligns);
+        delete aligns[c.id + ":" + Math.min(s.ab, c.assets.length - 1)];
+        this.setState({ aligns });
+      },
+      diffShow: s.diff && c.assets.length > 1 ? "block" : "none",
+      diffBg: c.assets.length > 1 ? "url(" + c.assets[s.ab === 0 ? 1 : 0].src + ")" : "none",
+      teacherNotes: c.teacherNotes || "",
+      auditRows: this.audit(),
+      auditNote: "Checks: complete rights metadata, host only where public domain, graphic material link-out only. In an LMS build these plates resolve to local files under /images and the same audit runs at prebuild.",
+      onExport: this.exportCsv,
+      onReset: () => { try { localStorage.removeItem(STORE); } catch (e) {} this.setState({ data: {}, view: "index" }); }
+    };
+  }
+
+  titleOf(cd) {
+    return {
+      fenton: "Valley of the Shadow of Death, 1855",
+      iwojima: "Raising the flag on Iwo Jima, 1945",
+      sitroom: "The Situation Room, 2011",
+      earthrise: "Earthrise, 1968",
+      aldrin: "Aldrin on the Moon, 1969",
+      pillars: "Pillars of Creation, 1995",
+      migrantmother: "Migrant Mother, 1936",
+      lunch: "Lunch atop a Skyscraper, 1932",
+      lochness: "The surgeon's photograph, Loch Ness, 1934",
+      che: "Guerrillero Heroico, 1960",
+      vjday: "V-J Day in Times Square, 1945",
+      reichstag: "Raising a flag over the Reichstag, 1945",
+      unseen: "An unseen photograph"
+    }[cd.id] || cd.id;
+  }
+}
+
+</script>
+</body>
+</html>
