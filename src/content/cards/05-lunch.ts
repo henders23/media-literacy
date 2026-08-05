@@ -1,0 +1,78 @@
+import type { Card } from '../types';
+import { wm } from '../sources';
+
+export const lunch: Card = {
+  id: 'lunch',
+  ref: '05',
+  unit: 1,
+  unitLabel: 'Unit 1',
+  title: 'Lunch atop a Skyscraper, 1932',
+  lens: 'staged',
+  tier: 'core',
+  ratio: 960 / 741,
+  sensitivity: 'none',
+  rights: {
+    status: 'embed',
+    display: 'embed',
+    holder: 'Wikimedia Commons',
+    credit:
+      'Photographer disputed, 29 September 1932. Rockefeller Center construction publicity. Reproduced from Wikimedia Commons.',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Lunch_atop_a_Skyscraper.jpg',
+  },
+  assets: [
+    {
+      label: 'plate',
+      src: wm('Lunch atop a Skyscraper.jpg'),
+      alt: 'Eleven men sit in a row along a steel beam high above New York City, eating lunch.',
+    },
+  ],
+  look: 'The steel frame of the RCA Building, Rockefeller Center, New York. 29 September 1932.',
+  commit: {
+    prompt: 'What do you think is happening in this photograph?',
+    note: 'Ungraded. Say what you take it to be.',
+    options: [
+      { key: 'break', text: 'Steel workers having their lunch break, photographed as they were.' },
+      { key: 'pr', text: 'A publicity photograph arranged during building work.' },
+      { key: 'composite', text: 'Two photographs joined together: men in a studio, the beam on site.' },
+      { key: 'cant', text: 'The picture cannot tell you which.' },
+    ],
+  },
+  context: [
+    'The men are real steel workers and the beam really is on the sixty-ninth floor of a building under construction. The height is not faked, and men did eat lunch up there.',
+    "The pictures were taken for the building's publicity campaign. Other photographs from the same afternoon survive, including one of the same men lying asleep on the beam. Nobody is sure who took them.",
+  ],
+  probe: {
+    prompt: 'Use the loupe along the beam. What in the picture suggests it was arranged?',
+    note: 'Not what you have heard. What the picture shows.',
+    tools: ['loupe'],
+    grade: 'options',
+    options: [
+      {
+        key: 'row',
+        text: 'The men sit evenly along the beam, all facing the same way, and nobody is working.',
+        correct: true,
+      },
+      { key: 'harness', text: 'They are wearing safety belts that have been painted out.' },
+      { key: 'sky', text: 'The sky behind them is a painted background.' },
+      { key: 'shadow', text: 'The shadows on the beam fall in two different directions.' },
+    ],
+  },
+  reveal: {
+    correct: 'Yes. An even row, one direction, nobody working. That is an arrangement, not a lunch break.',
+    incorrect:
+      'There are no safety belts, no painted background and no strange shadows. The men sit in an even row, all facing one way, and nobody is working. That is an arrangement.',
+    extra: 'The height, the beam and the men are exactly as true as they look. Only the moment was arranged.',
+  },
+  andYet: {
+    prompt: 'The men really did work at that height. Does that make the arranged photograph fair?',
+    canonical:
+      'These men worked at that height every day with no safety equipment, and the picture showed that to millions of people who would never go up there. Arranging a lunch break is not inventing one, and nobody was told anything false about the job.',
+  },
+  principle: {
+    canonical:
+      'The men and the height are real; the moment is not. Printed without saying that it was made for a publicity campaign, the picture pretends to be something it never was.',
+    verdict: 'deceptive',
+  },
+  teacherNotes:
+    'Good early pairing with Fenton: both arrange, neither invents. Ask what a caption would have to say for this to be honest.',
+};
