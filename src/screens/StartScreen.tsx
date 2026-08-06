@@ -33,17 +33,11 @@ export function StartScreen() {
         <div className="flex max-w-[58ch] flex-col gap-5 text-[14.5px] leading-[1.85] text-body [text-wrap:pretty]">
           <p>
             Loupe is a collection of photographs that changed what people believed. You will work
-            every one the same way: look at it cold, commit to a reading and say how sure you are,
-            get the background, prove what you can from the frame itself, see the answer with your
-            own words quoted back, make the case for the photographer, and write the rule in one
-            line. The order never changes. Your answers stay on this device and go nowhere else.
-          </p>
-          <p>
-            As you work you will collect seven lenses —{' '}
-            {LENSES.map((l) => l.label).join(', ')} — and by the end of the deck you will be
-            expected to reach for them unprompted. Nothing here is a trick question, and not every
-            plate resolves against the photographer. If you can predict the verdict before you have
-            done the work, slow down.
+            every one the same way: look, commit to a reading and say how sure you are, get the
+            context, prove what you can from the frame, see the answer, make the case for the
+            photographer, and write the rule in one line. Along the way you collect seven lenses —{' '}
+            {LENSES.map((l) => l.label).join(', ')} — to use on pictures nobody has taught you.
+            Your answers stay on this device.
           </p>
         </div>
 
@@ -52,22 +46,16 @@ export function StartScreen() {
         </div>
         <div className="flex max-w-[58ch] flex-col gap-5 text-[14.5px] leading-[1.85] text-body [text-wrap:pretty]">
           <p>
-            Some plates in this deck are public domain — old enough, or made by government agencies
-            — so they belong to everyone, and the app shows them directly. Most of the rest are
-            still someone's intellectual property. This app does not copy those. It describes each
-            one, names who made it and who holds it in the credit line under every plate, and opens
-            the photograph at the rights holder's own archive.
-          </p>
-          <p>
-            Treat that as the first lesson rather than the small print. Every photograph you are
-            about to examine was made by someone, is owned by someone, and reached you down a
-            particular road. Who made a picture, who controls it, and how it got in front of you is
-            part of what the picture means — which is the question this whole deck teaches.
+            Some plates are public domain and are shown inside the app. The rest are still
+            someone's intellectual property, so the app does not copy them: it names who made and
+            who holds each one, and opens the photograph at the rights holder's own archive. Treat
+            that as the first lesson — who made a picture, who owns it, and how it reached you is
+            part of what it means.
           </p>
         </div>
 
         <div className="mt-10 flex flex-wrap gap-3 border-t border-hairline pt-8">
-          {first && <Action onClick={() => navigate(`/card/${first.id}`)}>begin at plate {first.ref}</Action>}
+          {first && <Action onClick={() => navigate(`/card/${first.id}`)}>begin with the first plate</Action>}
           <Action onClick={() => navigate('/')}>back to the index</Action>
         </div>
       </div>

@@ -87,7 +87,7 @@ export function IndexScreen() {
                 onClick={() => navigate('/start')}
                 className="inline-block cursor-pointer rounded border border-red px-[18px] py-[11px] font-mono text-[11px] uppercase tracking-[.16em] text-red transition-colors hover:bg-red hover:text-paper motion-reduce:transition-none"
               >
-                start here — how this app works
+                start here
               </button>
             </div>
             <div className="mx-auto mb-14 flex max-w-[72ch] flex-wrap items-baseline justify-center gap-x-5 gap-y-2">
@@ -166,9 +166,7 @@ export function IndexScreen() {
                     )}
                   </div>
                   <div className="mt-3 flex items-baseline justify-between gap-2.5 font-mono text-[10px] uppercase tracking-[.16em]">
-                    <span className="text-muted">
-                      {card.mode === 'unseen' ? 'no scaffolding' : `plate ${card.ref}`}
-                    </span>
+                    <span className="text-muted">{card.unitLabel}</span>
                     <span className={done ? 'text-blue' : r.beat ? 'text-red' : 'text-dim'}>{mark}</span>
                   </div>
                   <div className="mt-1.5 text-sm leading-[1.4]">
@@ -199,7 +197,9 @@ export function IndexScreen() {
               onClick={() => navigate(`/card/${nextUnopened.id}`)}
               className="cursor-pointer border-b border-blue/35 font-mono text-[11px] uppercase tracking-[.16em] text-blue"
             >
-              begin at plate {nextUnopened.ref}
+              {deck.some((c) => records[c.id]?.done || records[c.id]?.beat)
+                ? 'continue where you left off'
+                : 'begin with the first plate'}
             </button>
           ) : (
             <span />
