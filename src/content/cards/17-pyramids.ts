@@ -26,6 +26,8 @@ export const pyramids: Card = {
     },
   ],
   look: 'The pyramids at Giza, Egypt, on a magazine cover dated February 1982.',
+  lookIntro:
+    'National Geographic is famous for its photography, and its covers travel around the world. In 1982 the magazine planned a story on Egypt, with a photograph of the pyramids at Giza on the cover. New computer tools for handling photographs had just arrived in publishing.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism before you are told what was done.',
@@ -38,13 +40,13 @@ export const pyramids: Card = {
   ],
   probe: {
     prompt: 'The cover crops a horizontal picture to a vertical. What could a crop alone not have done here?',
-    note: "The source record explains the edit. The cover itself is one image search away — 'National Geographic February 1982' — which is a skill this deck teaches anyway.",
+    note: "The source record explains the edit. To see the cover itself, image-search 'National Geographic February 1982'.",
     tools: [],
     grade: 'options',
     options: [
       {
         key: 'closer',
-        text: 'Bring the pyramids closer together — a crop can only discard, and the cover narrows the gap between them.',
+        text: 'Bring the pyramids closer together — a crop can only cut things away, and on the cover the gap between them is smaller.',
         correct: true,
       },
       { key: 'sky', text: 'Remove sky above them.' },

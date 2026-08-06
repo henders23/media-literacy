@@ -26,6 +26,8 @@ export const rothstein: Card = {
     },
   ],
   look: 'Rangeland in Pennington County, South Dakota. May 1936.',
+  lookIntro:
+    'In the 1930s a long drought hit the American plains. Crops failed, cattle died, and many families lost their farms. The government sent young photographers across the country to record the disaster, so the public would support help for farmers. Arthur Rothstein, aged twenty-one, was one of them.',
   commit: {
     prompt: 'What do you think this photograph shows?',
     note: 'Ungraded. Answer from the frame described, before anyone tells you its history.',

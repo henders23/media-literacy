@@ -25,6 +25,8 @@ export const earthrise: Card = {
     },
   ],
   look: 'Lunar orbit, about 110 kilometres above the surface. 24 December 1968.',
+  lookIntro:
+    'In December 1968 the crew of Apollo 8 became the first people to fly around the Moon. Their job was to test the spacecraft and photograph the surface, to prepare for a landing the next year. The astronaut William Anders carried a camera for the mission.',
   commit: {
     prompt: 'Which way up was this picture taken?',
     note: 'Ungraded. The published orientation is not necessarily the exposed one.',

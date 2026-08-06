@@ -25,6 +25,8 @@ export const marlboro: Card = {
     },
   ],
   look: 'A rooftop in Fallujah, Iraq, after a night of fighting. 9 November 2004.',
+  lookIntro:
+    'In November 2004 American forces fought for the Iraqi city of Fallujah, in some of the heaviest combat of the Iraq war. Photographer Luis Sinco of the Los Angeles Times was embedded with a Marine unit and went through the battle beside the soldiers he photographed.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism first.',
@@ -36,13 +38,13 @@ export const marlboro: Card = {
   ],
   probe: {
     prompt: 'What did the papers print this frame as evidence of?',
-    note: 'Separate what a face after combat can prove from what it was used to say.',
+    note: 'Think about what a face after combat can prove, and what it was used to say.',
     tools: [],
     grade: 'options',
     options: [
       {
         key: 'symbol',
-        text: 'A quality — toughness, resolve — that no single frame can establish about a person.',
+        text: 'A quality — toughness, determination — that no single picture can prove about a person.',
         correct: true,
       },
       { key: 'battle', text: 'The outcome of the battle.' },

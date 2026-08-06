@@ -26,6 +26,8 @@ export const gardner: Card = {
     },
   ],
   look: "Devil's Den, the battlefield at Gettysburg, Pennsylvania. About 6 July 1863.",
+  lookIntro:
+    "In July 1863 the two armies of the American Civil War met at Gettysburg, the largest battle of the war. About fifty thousand men were killed or wounded in three days. Photography was still new, and the public had never seen what a battlefield looked like afterwards. Alexander Gardner's team arrived while the dead were still being buried.",
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'You arrive with the full kit. Name the mechanism.',

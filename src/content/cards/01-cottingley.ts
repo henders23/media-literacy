@@ -26,6 +26,8 @@ export const cottingley: Card = {
     },
   ],
   look: 'A beck behind a garden in Cottingley, Yorkshire, England. July 1917.',
+  lookIntro:
+    "In 1917 Britain was deep in the First World War, and many people wanted to believe in a kinder, hidden world. In the village of Cottingley, two young cousins, Elsie and Frances, often played by the stream behind Elsie's garden. One afternoon they borrowed her father's camera.",
   commit: {
     prompt: 'What do you think this photograph is?',
     note: 'Ungraded, and it stays on the record. It is what you thought before anyone told you anything.',
@@ -43,7 +45,7 @@ export const cottingley: Card = {
   ],
   probe: {
     prompt: 'Look at the waterfall behind and the figures in front. What separates them?',
-    note: 'Open the photograph from the source record. The exposure lasted long enough to matter.',
+    note: 'Open the photograph from the source record. The camera needed a long exposure — several seconds — to make this picture.',
     tools: [],
     grade: 'options',
     options: [

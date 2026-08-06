@@ -26,6 +26,8 @@ export const fallingsoldier: Card = {
     },
   ],
   look: 'A hillside said to be near Cerro Muriano, on the Córdoba front, Spain. 5 September 1936.',
+  lookIntro:
+    "In 1936 civil war broke out in Spain between the elected government and General Franco's rebels. Young photographers went to cover it with the new small, fast cameras, among them 22-year-old Robert Capa. It was the first war photographed close up, as it happened.",
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism you suspect. Still ungraded.',

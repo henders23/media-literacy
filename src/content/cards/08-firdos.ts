@@ -26,6 +26,8 @@ export const firdos: Card = {
     },
   ],
   look: 'Firdos Square, central Baghdad. 9 April 2003.',
+  lookIntro:
+    "In March 2003 the United States and its allies invaded Iraq to remove the dictator Saddam Hussein. Three weeks later their forces reached Baghdad, the capital. The world's press was based in a hotel beside Firdos Square, in the centre of the city.",
   commit: {
     prompt: 'What do you think this event was?',
     note: 'Ungraded. Answer from whatever version of this picture you carry.',

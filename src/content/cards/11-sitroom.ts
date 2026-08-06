@@ -25,6 +25,8 @@ export const sitroom: Card = {
     },
   ],
   look: 'A conference room in the West Wing of the White House, Washington. 1 May 2011.',
+  lookIntro:
+    'On the night of 1 May 2011, American special forces raided a house in Pakistan where Osama bin Laden, the leader of al-Qaeda, was hiding. In Washington, the president and his advisers followed the operation as it happened. The official White House photographer was with them.',
   commit: {
     prompt: 'What do you think you are looking at?',
     note: 'Ungraded. Say what you take the picture to be.',

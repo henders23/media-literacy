@@ -27,6 +27,8 @@ export const pillars: Card = {
     },
   ],
   look: 'The Eagle Nebula, M16, about 6,500 light years away. Hubble WFPC2, 1 April 1995.',
+  lookIntro:
+    "The Hubble Space Telescope was launched in 1990 to photograph space from above the Earth's atmosphere. In 1995 astronomers pointed it at the Eagle Nebula, a huge cloud of gas and dust where new stars are being born, about 6,500 light years away.",
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism before you know what was done.',

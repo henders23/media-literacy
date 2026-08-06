@@ -26,6 +26,8 @@ export const eldagsen: Card = {
     },
   ],
   look: 'Two women, in what appears to be a portrait from the 1940s. Exhibited 2023.',
+  lookIntro:
+    'By 2023, artificial intelligence tools could produce images from a written description in seconds. Photography competitions had not yet decided how to deal with them. Boris Eldagsen, a German artist who had worked in photography for thirty years, entered the Sony World Photography Awards.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism first.',
@@ -37,14 +39,14 @@ export const eldagsen: Card = {
     'The image imitates the surface of a period photograph: the grain, the lighting, the pose. It has no negative, no sitting, no sitters.',
   ],
   probe: {
-    prompt: 'Nothing in this image ever stood before a lens. What is the strongest tell inside the frame itself?',
+    prompt: 'Nothing in this image ever stood before a lens. What is the strongest sign of that inside the frame itself?',
     note: 'Open it from the source record and look closely at the bodies.',
     tools: [],
     grade: 'options',
     options: [
       {
         key: 'anatomy',
-        text: 'The bodies — hands, eyes, and the logic of the clothing drift wrong, because the system predicts textures rather than records objects.',
+        text: 'The bodies — hands, eyes and clothing go slightly wrong, because the system predicts what pictures look like instead of recording real things.',
         correct: true,
       },
       { key: 'grain', text: 'Film grain from the wrong decade.' },

@@ -26,6 +26,8 @@ export const ojcover: Card = {
     },
   ],
   look: 'Two news-stand covers of the same police photograph. 27 June 1994.',
+  lookIntro:
+    'In June 1994 the former American football star O.J. Simpson was arrested, accused of murdering his ex-wife and her friend. The case filled the news for months. The two biggest news magazines, Time and Newsweek, both chose the police booking photograph of Simpson for their covers, in the same week.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism first.',
@@ -37,7 +39,7 @@ export const ojcover: Card = {
   ],
   probe: {
     prompt: "Set the two covers side by side. What did Time's version change?",
-    note: "The source record is Time's own cover archive. For the unaltered version, search 'Newsweek June 27 1994 cover' and put them side by side.",
+    note: "The source record shows Time's cover. Search 'Newsweek June 27 1994 cover' to see the unchanged version beside it.",
     tools: [],
     grade: 'options',
     options: [

@@ -25,6 +25,8 @@ export const miliband: Card = {
     },
   ],
   look: 'A flower market in south London, on the morning before local elections. 21 May 2014.',
+  lookIntro:
+    'In May 2014 Ed Miliband led the Labour Party and hoped to become the British prime minister. The day before local elections he made an early campaign visit to a London flower market. The press pack came with him, as it did everywhere.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism first. Yes, it is a man eating a sandwich.',

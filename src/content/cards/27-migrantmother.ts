@@ -27,6 +27,8 @@ export const migrantmother: Card = {
     },
   ],
   look: "A pea-pickers' camp beside the highway at Nipomo, California. March 1936.",
+  lookIntro:
+    'In the 1930s the Great Depression left millions of Americans without work, and drought drove farm families west to California to look for harvest work. The government hired photographers to document their conditions and build support for aid. Dorothea Lange was driving home from one of those jobs in March 1936.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'The capstone. Every mechanism in the deck is available to you here.',

@@ -26,6 +26,8 @@ export const lunch: Card = {
     },
   ],
   look: 'The steel frame of the RCA Building, Rockefeller Center, New York. 29 September 1932.',
+  lookIntro:
+    'In 1932 New York kept building upward even in the middle of the Great Depression. The men who built the skyscrapers — many of them immigrants — worked at great heights without safety ropes. The new Rockefeller Center hired photographers to make pictures that would keep the project in the newspapers.',
   commit: {
     prompt: 'What do you think is happening in this photograph?',
     note: 'Ungraded. Say what you take it to be.',
@@ -42,7 +44,7 @@ export const lunch: Card = {
   ],
   probe: {
     prompt: 'Look along the beam. What in the picture suggests it was arranged?',
-    note: 'Open the photograph from the source record. Not what you have heard — what the picture shows.',
+    note: 'Open the photograph from the source record and look along the beam.',
     tools: [],
     grade: 'options',
     options: [
