@@ -1,5 +1,4 @@
 import type { Card } from '../types';
-import { wm } from '../sources';
 
 export const reichstag: Card = {
   id: 'reichstag',
@@ -13,17 +12,17 @@ export const reichstag: Card = {
   sensitivity: 'none',
   lensRetrieval: true,
   rights: {
-    status: 'embed',
-    display: 'embed',
-    holder: 'Wikimedia Commons',
-    credit: 'Yevgeny Khaldei, 2 May 1945, Berlin. Reproduced from Wikimedia Commons.',
-    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Raising_a_flag_over_the_Reichstag.jpg',
+    status: 'link-out',
+    display: 'link',
+    holder: 'Yevgeny Khaldei estate',
+    credit: 'Yevgeny Khaldei, 2 May 1945, Berlin. © Yevgeny Khaldei estate.',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Raising_a_Flag_over_the_Reichstag',
   },
   assets: [
     {
       label: 'plate',
-      src: wm('Raising a flag over the Reichstag.jpg'),
-      alt: 'A soldier swings a Soviet flag from the parapet of the Reichstag roof, above a smoking city.',
+      src: '',
+      alt: 'A soldier swings a Soviet flag from the parapet of the Reichstag roof, held by a second soldier, above a smoking city.',
     },
   ],
   look: 'The roof of the Reichstag, Berlin. 2 May 1945.',
@@ -38,8 +37,8 @@ export const reichstag: Card = {
   ],
   probe: {
     prompt: "One object was removed from the supporting soldier's wrist before publication. What was it?",
-    note: 'The loupe is on. Look at the wrists and at the skyline.',
-    tools: ['loupe'],
+    note: 'Open the photograph from the source record; both versions are shown there. Look at the wrists and at the skyline.',
+    tools: [],
     grade: 'options',
     options: [
       { key: 'watch', text: 'A second wristwatch, which would suggest stealing.', correct: true },

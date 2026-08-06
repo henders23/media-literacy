@@ -22,10 +22,10 @@ npm run dev            # develop
 npm run build          # rights gate → type check → static build in /dist
 ```
 
-`fetch-images` downloads the public-domain scans (NASA, Library of Congress, National Archives…)
-from Wikimedia Commons at 1600px so the app hosts them locally and never hotlinks. Cards with
-`status: 'embed'` are deliberately served from the rights holder instead and need no download.
-The two Fenton plates shipped with the design system; one is already vendored.
+The public-domain plates (NASA, Library of Congress, National Archives…) are vendored in
+`public/images`; `fetch-images` can re-download them from Wikimedia Commons if rebuilding from
+scratch. Cottingley (`status: 'embed'`) is served from Wikimedia; every copyrighted photograph
+uses link-out — described in the app, opened at the rights holder's archive, never copied.
 
 ## Architecture
 

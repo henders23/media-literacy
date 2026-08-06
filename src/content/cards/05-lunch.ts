@@ -1,5 +1,4 @@
 import type { Card } from '../types';
-import { wm } from '../sources';
 
 export const lunch: Card = {
   id: 'lunch',
@@ -12,18 +11,18 @@ export const lunch: Card = {
   ratio: 960 / 741,
   sensitivity: 'none',
   rights: {
-    status: 'embed',
-    display: 'embed',
-    holder: 'Wikimedia Commons',
+    status: 'link-out',
+    display: 'link',
+    holder: 'Bettmann Archive / Getty Images',
     credit:
-      'Photographer disputed, 29 September 1932. Rockefeller Center construction publicity. Reproduced from Wikimedia Commons.',
-    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Lunch_atop_a_Skyscraper.jpg',
+      'Photographer disputed, 29 September 1932. Rockefeller Center construction publicity. © Bettmann Archive / Getty Images.',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Lunch_atop_a_Skyscraper',
   },
   assets: [
     {
       label: 'plate',
-      src: wm('Lunch atop a Skyscraper.jpg'),
-      alt: 'Eleven men sit in a row along a steel beam high above New York City, eating lunch.',
+      src: '',
+      alt: 'Eleven men sit in a row along a steel beam high above New York City, eating lunch, all facing the camera.',
     },
   ],
   look: 'The steel frame of the RCA Building, Rockefeller Center, New York. 29 September 1932.',
@@ -42,9 +41,9 @@ export const lunch: Card = {
     "The pictures were taken for the building's publicity campaign. Other photographs from the same afternoon survive, including one of the same men lying asleep on the beam. Nobody is sure who took them.",
   ],
   probe: {
-    prompt: 'Use the loupe along the beam. What in the picture suggests it was arranged?',
-    note: 'Not what you have heard. What the picture shows.',
-    tools: ['loupe'],
+    prompt: 'Look along the beam. What in the picture suggests it was arranged?',
+    note: 'Open the photograph from the source record. Not what you have heard — what the picture shows.',
+    tools: [],
     grade: 'options',
     options: [
       {
