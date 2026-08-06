@@ -9,6 +9,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "check-rights": "tsx scripts/check-rights.ts",
+    "check-links": "tsx scripts/check-links.ts",
     "fetch-images": "node scripts/fetch-images.mjs"
   },
   "dependencies": {

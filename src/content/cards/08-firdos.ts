@@ -16,7 +16,7 @@ export const firdos: Card = {
     holder: 'Reuters / Getty Images',
     credit:
       'Goran Tomasevic and others, 9 April 2003, Firdos Square, Baghdad. Reuters. Analysis: Peter Maass, "The Toppling", The New Yorker, 2011.',
-    sourceUrl: 'https://www.newyorker.com/magazine/2011/01/10/the-toppling',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Firdos_Square_statue_destruction',
   },
   assets: [
     {
@@ -43,7 +43,7 @@ export const firdos: Card = {
   ],
   probe: {
     prompt: 'Between the tight frame and the wide frame, what changes?',
-    note: 'Open the analysis from the source record; it reproduces both framings.',
+    note: 'Open the source record and compare the close news pictures with the wider views of the square.',
     tools: [],
     grade: 'options',
     options: [

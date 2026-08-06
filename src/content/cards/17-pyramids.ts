@@ -16,7 +16,7 @@ export const pyramids: Card = {
     holder: 'National Geographic Society',
     credit:
       'Gordon Gahan, camel train before the pyramids of Giza. Cover of National Geographic, February 1982.',
-    sourceUrl: 'https://en.wikipedia.org/wiki/National_Geographic',
+    sourceUrl: 'https://en.wikipedia.org/wiki/National_Geographic#Photo_manipulation',
   },
   assets: [
     {
@@ -38,7 +38,7 @@ export const pyramids: Card = {
   ],
   probe: {
     prompt: 'The cover crops a horizontal picture to a vertical. What could a crop alone not have done here?',
-    note: 'Think about what cropping can and cannot change, then check the two versions from the source record.',
+    note: "The source record explains the edit. The cover itself is one image search away — 'National Geographic February 1982' — which is a skill this deck teaches anyway.",
     tools: [],
     grade: 'options',
     options: [
