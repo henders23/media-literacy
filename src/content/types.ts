@@ -76,6 +76,12 @@ export type Card = {
 
   /** Beat 1 — when and where ONLY. */
   look: string;
+  /**
+   * Beat 1 background: what was going on in the world, and why a photographer
+   * was there. Plain English for intermediate learners. Never about the
+   * photograph itself — that would bias the read.
+   */
+  lookIntro?: string;
   /** Beat 2 — interpretive, ungraded, always with confidence. */
   commit?: { prompt: string; note?: string; options: Option[] };
   /** Beat 3. */

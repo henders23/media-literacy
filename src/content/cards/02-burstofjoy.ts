@@ -26,6 +26,8 @@ export const burstofjoy: Card = {
     },
   ],
   look: 'The runway at Travis Air Force Base, California. 17 March 1973.',
+  lookIntro:
+    'In 1973 the United States ended its long war in Vietnam, and hundreds of American prisoners of war finally came home. Newspapers sent photographers to the airfields to record the family reunions. Sal Veder of the Associated Press was waiting at Travis Air Force Base in California.',
   commit: {
     prompt: 'What does this photograph show?',
     note: 'Ungraded. Say what you take it to be.',

@@ -25,6 +25,8 @@ export const carter: Card = {
     },
   ],
   look: 'Scrubland near a feeding centre at Ayod, southern Sudan. March 1993.',
+  lookIntro:
+    'In 1993 southern Sudan was suffering both war and famine. Aid agencies flew journalists in on their food flights, so the world would see the crisis and send help. The South African photographer Kevin Carter came in on one of those flights.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'The famous reading of this picture is not in the picture. Name the mechanism.',

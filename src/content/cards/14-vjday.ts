@@ -26,6 +26,8 @@ export const vjday: Card = {
     },
   ],
   look: 'Times Square, New York. 14 August 1945.',
+  lookIntro:
+    'On 14 August 1945 Japan surrendered, and the Second World War was over. In New York, thousands of people poured into Times Square to celebrate. Photographers moved through the crowd, taking pictures of strangers celebrating together.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism first.',
@@ -37,7 +39,7 @@ export const vjday: Card = {
   ],
   probe: {
     prompt: 'What can this picture prove about the two people in it?',
-    note: 'Only what the picture carries. The rest is caption.',
+    note: 'Choose only what the picture itself can prove.',
     tools: ['loupe'],
     grade: 'options',
     options: [

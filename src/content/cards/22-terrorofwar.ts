@@ -26,6 +26,8 @@ export const terrorofwar: Card = {
     },
   ],
   look: 'Route 1 outside Trảng Bàng, South Vietnam. 8 June 1972.',
+  lookIntro:
+    'By 1972 the war in Vietnam had lasted many years, and press photographers worked beside the troops every day. On 8 June, South Vietnamese planes dropped napalm — burning petrol jelly — on the village of Trảng Bàng by mistake. A group of journalists was waiting on the road outside.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'You may know this picture. Name the mechanism you think is in play — the answer is stranger than the famous story.',
@@ -38,7 +40,7 @@ export const terrorofwar: Card = {
   ],
   probe: {
     prompt: 'Fifty years on, which claim about this photograph is actually in dispute?',
-    note: 'Separate the claims a photograph carries: event, subject, maker.',
+    note: 'A photograph makes claims about the event, the people, and the maker. Which one is in doubt here?',
     tools: [],
     grade: 'options',
     options: [

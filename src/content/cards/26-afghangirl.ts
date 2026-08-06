@@ -26,6 +26,8 @@ export const afghangirl: Card = {
     },
   ],
   look: 'A tent school in the Nasir Bagh refugee camp, Peshawar, Pakistan. December 1984.',
+  lookIntro:
+    'After the Soviet Union invaded Afghanistan in 1979, millions of Afghans fled to refugee camps in Pakistan. In 1984 National Geographic sent the photographer Steve McCurry to the camps, to show the crisis to readers far away who had stopped paying attention.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism first.',

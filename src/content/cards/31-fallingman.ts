@@ -25,6 +25,8 @@ export const fallingman: Card = {
     },
   ],
   look: 'The north tower of the World Trade Center, New York. 9:41 a.m., 11 September 2001.',
+  lookIntro:
+    'On the morning of 11 September 2001, hijacked planes were flown into the two towers of the World Trade Center in New York. As the towers burned, photographers across the city recorded everything they could. Richard Drew of the Associated Press stood in the street below, camera raised.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'The last card of the deck. Name the mechanism.',
@@ -36,13 +38,13 @@ export const fallingman: Card = {
   ],
   probe: {
     prompt: "Drew's sequence holds a dozen frames of the same fall. What is true only of the published one?",
-    note: 'The source record reproduces the sequence.',
+    note: 'The source record shows the whole sequence.',
     tools: [],
     grade: 'options',
     options: [
       {
         key: 'calm',
-        text: 'Its composure — vertical, symmetrical, aligned with the tower — held for a fraction of a second in a fall that had none.',
+        text: 'Its calm — the body straight and in line with the tower, for a split second in a fall that had no calm in it.',
         correct: true,
       },
       { key: 'alone', text: 'That the man is alone in it.' },

@@ -25,6 +25,8 @@ export const che: Card = {
     },
   ],
   look: 'A memorial service in Havana, Cuba. 5 March 1960.',
+  lookIntro:
+    "In 1959 Fidel Castro's revolution took power in Cuba, and Ernesto 'Che' Guevara was one of its leaders. In March 1960 a ship exploded in Havana's harbour, killing about a hundred people. At the public memorial service the next day, the photographer Alberto Korda was covering the speeches for a newspaper.",
   commit: {
     prompt: 'What is this photograph?',
     note: 'Ungraded.',

@@ -26,6 +26,8 @@ export const aldrin: Card = {
     },
   ],
   look: 'The Sea of Tranquility, the Moon. 20 July 1969.',
+  lookIntro:
+    'In July 1969 Apollo 11 landed the first people on the Moon. Neil Armstrong stepped out first; Buzz Aldrin followed. The two spent about two hours walking on the surface while the world watched on television.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'On this plate, beat two asks you to name the mechanism. Still ungraded.',

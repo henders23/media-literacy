@@ -24,10 +24,7 @@ export function Commit({ card, onAdvance }: { card: Card; onAdvance: () => void 
 
   return (
     <div>
-      <div className="mb-2 max-w-[36ch] text-[23px] leading-[1.45]">{prompt}</div>
-      {card.commit?.note && (
-        <div className="mb-6 max-w-[46ch] text-[12.5px] leading-[1.75] text-muted">{card.commit.note}</div>
-      )}
+      <div className="mb-6 max-w-[36ch] text-[23px] leading-[1.45]">{prompt}</div>
       <div className="mb-8">
         <OptionList
           options={options.map((o) => ({

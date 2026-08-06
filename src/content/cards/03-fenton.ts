@@ -34,6 +34,8 @@ export const fenton: Card = {
     },
   ],
   look: 'A ravine on the road to Sevastopol, Crimea. 23 April 1855.',
+  lookIntro:
+    'In 1855 Britain and France were at war with Russia in the Crimea, a peninsula on the Black Sea. Newspapers could not yet print photographs, but people at home were hungry for pictures of the war. A print dealer paid Roger Fenton, one of the first war photographers, to travel there and bring back views to sell.',
   commit: {
     prompt: 'What do you think this photograph shows?',
     note: 'Ungraded, and it stays on the record. It is what you thought before anyone told you anything.',
@@ -51,7 +53,7 @@ export const fenton: Card = {
   ],
   probe: {
     prompt: 'Switch between the two plates. What is different?',
-    note: 'Beat two asked what you thought. This asks what you can prove. Use the loupe on the road.',
+    note: 'Switch between plate a and plate b, and use the loupe on the road.',
     tools: ['ab', 'loupe'],
     grade: 'options',
     options: [

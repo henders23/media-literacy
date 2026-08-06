@@ -26,6 +26,8 @@ export const amazon: Card = {
     },
   ],
   look: "A rainforest burning. Shared to millions of feeds as 'the Amazon, right now'. August 2019.",
+  lookIntro:
+    'In August 2019 large fires burned in the Amazon rainforest in Brazil. The story spread quickly around the world, and millions of people — including celebrities and presidents — shared pictures of burning forest online to raise the alarm.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism first. Still ungraded.',
@@ -38,7 +40,7 @@ export const amazon: Card = {
   ],
   probe: {
     prompt: 'You cannot check this claim from inside the frame. Where is the evidence?',
-    note: 'This one is a live exercise: save the image from the source record and put it into a reverse image search. This works on any picture in your feed.',
+    note: 'A live exercise: save the image from the source record and put it into a reverse image search. This works on any picture in your feed.',
     tools: [],
     grade: 'options',
     options: [

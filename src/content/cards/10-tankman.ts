@@ -25,6 +25,8 @@ export const tankman: Card = {
     },
   ],
   look: "Chang'an Avenue, near Tiananmen Square, Beijing. 5 June 1989.",
+  lookIntro:
+    'In spring 1989, students and workers filled Tiananmen Square in Beijing to demand political change in China. On 4 June the army cleared the square by force, killing many people. Foreign journalists, kept inside a nearby hotel, could only watch the avenue below from their balconies.',
   commit: {
     prompt: 'What do you think this photograph shows?',
     note: 'Ungraded. Answer from whatever version of this picture you carry.',
@@ -42,7 +44,7 @@ export const tankman: Card = {
   ],
   probe: {
     prompt: 'Put the crop back out. What does the wide frame add to the account?',
-    note: 'The source record reproduces both framings.',
+    note: 'The source record shows both the close and the wide pictures.',
     tools: [],
     grade: 'options',
     options: [

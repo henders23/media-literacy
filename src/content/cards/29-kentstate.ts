@@ -25,6 +25,8 @@ export const kentstate: Card = {
     },
   ],
   look: 'A parking lot at Kent State University, Ohio. 4 May 1970.',
+  lookIntro:
+    'In May 1970 American students were protesting against the spread of the Vietnam war into Cambodia. At Kent State University in Ohio, the state governor sent in the National Guard. On 4 May the soldiers opened fire on a protest, killing four students. John Filo, a student learning photojournalism, was in the parking lot with his camera.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'The mechanism here is not the famous part of the story.',

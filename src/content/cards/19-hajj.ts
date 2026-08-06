@@ -26,6 +26,8 @@ export const hajj: Card = {
     },
   ],
   look: "Beirut under air strike, seen from the city's edge. 5 August 2006.",
+  lookIntro:
+    'In summer 2006 Israel and the armed group Hezbollah fought a short war in Lebanon. News agencies supplied the world with daily pictures of the bombing. Reuters, one of the largest agencies, used local freelance photographers, among them Adnan Hajj, who had worked for them for years.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism first.',
@@ -37,7 +39,7 @@ export const hajj: Card = {
   ],
   probe: {
     prompt: 'The alteration exposed itself. What gives a cloned area away?',
-    note: 'The source record reproduces the frame with the repetitions marked.',
+    note: 'The source record shows the frame with the repeated areas marked.',
     tools: [],
     grade: 'options',
     options: [

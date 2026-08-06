@@ -26,6 +26,8 @@ export const lochness: Card = {
     },
   ],
   look: 'Loch Ness, Scotland. Published 21 April 1934.',
+  lookIntro:
+    'Loch Ness is a deep lake in Scotland. In 1933 a new road opened along its shore, and stories of a monster in the water began to spread. Newspapers competed for proof. In April 1934 the Daily Mail published a photograph supplied by a respected London doctor.',
   commit: {
     prompt: 'What is in this photograph?',
     note: 'Ungraded. Answer from the frame you can see.',

@@ -26,6 +26,8 @@ export const reichstag: Card = {
     },
   ],
   look: 'The roof of the Reichstag, Berlin. 2 May 1945.',
+  lookIntro:
+    'In May 1945 the Soviet army captured Berlin, and the Second World War in Europe ended. The Reichstag, the German parliament building, was the symbol of victory the Soviets wanted most. Yevgeny Khaldei, a Soviet war photographer, flew to Berlin to photograph it.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
     note: 'Name the mechanism before you are told what was done.',

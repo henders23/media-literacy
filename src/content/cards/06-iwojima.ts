@@ -25,6 +25,8 @@ export const iwojima: Card = {
     },
   ],
   look: 'The summit of Mount Suribachi, Iwo Jima. 23 February 1945.',
+  lookIntro:
+    'In early 1945, near the end of the Second World War, American forces attacked the small Japanese island of Iwo Jima. The fighting was among the hardest of the Pacific war. Photographer Joe Rosenthal of the Associated Press landed with the marines to cover it.',
   commit: {
     prompt: 'What moment do you think this is?',
     note: 'Ungraded. Answer from the frame and from whatever you already carry about this picture.',
@@ -41,7 +43,6 @@ export const iwojima: Card = {
   ],
   probe: {
     prompt: 'Click the part of the picture that shows the summit was already taken.',
-    note: 'Not what you believe. What the picture itself shows.',
     tools: ['hotspot'],
     grade: 'hotspot',
     hotspot: { x: 10, y: 56, w: 56, h: 40, label: 'the ground and the figures on it' },
