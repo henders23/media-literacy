@@ -28,7 +28,7 @@ export const aldrin: Card = {
   look: 'The Sea of Tranquility, the Moon. 20 July 1969.',
   commit: {
     prompt: 'Which lens applies to this photograph?',
-    note: 'From here on, beat two asks you to name the mechanism. Still ungraded.',
+    note: 'On this plate, beat two asks you to name the mechanism. Still ungraded.',
     options: [],
   },
   context: [

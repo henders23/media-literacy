@@ -32,40 +32,53 @@ import { carter } from './30-carter';
 import { fallingman } from './31-fallingman';
 import { unseen } from './99-unseen';
 
+/**
+ * Deck order. Plates whose photographs are hosted in the app come first, so
+ * the opening pages work without leaving it; the link-out plates — where the
+ * student opens the photograph at the rights holder's archive — form one
+ * contiguous block after them. Two placements are fixed regardless: the
+ * Migrant Mother capstone stays late (every mechanism is assumed known), and
+ * the gated unit and the unassessed capstone stay last.
+ */
 export const CARDS: Card[] = [
-  cottingley,
-  burstofjoy,
+  // photographs in the app
   fenton,
   rothstein,
-  lunch,
   iwojima,
-  lochness,
-  firdos,
-  che,
-  tankman,
   sitroom,
   earthrise,
   aldrin,
   vjday,
+  pillars,
+  // photographs at the archive
+  cottingley,
+  burstofjoy,
+  lunch,
+  lochness,
+  firdos,
+  che,
+  tankman,
   amazon,
   reichstag,
   pyramids,
   ojcover,
   hajj,
-  pillars,
   fallingsoldier,
   terrorofwar,
   eldagsen,
   miliband,
   marlboro,
   afghangirl,
+  // capstone
   migrantmother,
+  // gated unit, off by default — runs after the capstone
   gardner,
   kentstate,
   carter,
   fallingman,
+  // always last
   unseen,
-].sort((a, b) => (Number(a.ref) || 999) - (Number(b.ref) || 999));
+];
 
 export const cardById = (id: string): Card | undefined => CARDS.find((c) => c.id === id);
 export const cardIndex = (id: string): number => CARDS.findIndex((c) => c.id === id);

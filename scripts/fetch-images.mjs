@@ -21,6 +21,7 @@ const MANIFEST = [
   ['pillars-of-creation.jpg', wm('Pillars of Creation.jpg')],
   ['migrant-mother.jpg', wm('Lange-MigrantMother02.jpg')],
   ['bootprint.jpg', wm('Apollo 11 bootprint.jpg')],
+  ['rothstein-steer-skull.jpg', wm('Arthur Rothstein - The bleached skull of a steer, South Dakota Badlands, 1936.jpg')],
 ];
 
 const dir = join(process.cwd(), 'public', 'images');

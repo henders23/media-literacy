@@ -8,11 +8,11 @@ export const rothstein: Card = {
   title: 'The steer skull, 1936',
   lens: 'staged',
   tier: 'core',
-  ratio: 960 / 720,
+  ratio: 1280 / 1262,
   sensitivity: 'none',
   rights: {
     status: 'public-domain',
-    display: 'link',
+    display: 'host',
     holder: 'Library of Congress',
     credit:
       'Arthur Rothstein, May 1936, Pennington County, South Dakota. Farm Security Administration collection, Library of Congress. Public domain.',
@@ -21,7 +21,7 @@ export const rothstein: Card = {
   assets: [
     {
       label: 'plate',
-      src: '',
+      src: '/images/rothstein-steer-skull.jpg',
       alt: 'A bleached steer skull lies on cracked, sun-baked earth, its shadow hard beside it.',
     },
   ],
@@ -43,8 +43,8 @@ export const rothstein: Card = {
   ],
   probe: {
     prompt: 'Five frames of this skull survive in the same archive. What in them shows the object was moved?',
-    note: 'Open the archive from the source record and compare the frames.',
-    tools: [],
+    note: 'This is the cracked-earth frame. Open the archive from the source record and compare it with the others.',
+    tools: ['loupe'],
     grade: 'options',
     options: [
       {
