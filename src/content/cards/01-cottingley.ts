@@ -22,7 +22,7 @@ export const cottingley: Card = {
   assets: [
     {
       label: 'plate',
-      src: wm('Cottingley Fairies 1.jpg'),
+      src: wm('Cottingley Fairies 1.jpg', 0),
       alt: 'A girl rests her chin on her hand behind a grassy bank. Four winged figures appear to dance in front of her; a small waterfall runs behind.',
     },
   ],

@@ -1,5 +1,4 @@
 import type { Card } from '../types';
-import { wm } from '../sources';
 
 export const che: Card = {
   id: 'che',
@@ -12,17 +11,17 @@ export const che: Card = {
   ratio: 960 / 1230,
   sensitivity: 'none',
   rights: {
-    status: 'embed',
-    display: 'embed',
-    holder: 'Wikimedia Commons',
-    credit: 'Alberto Korda, 5 March 1960, Havana. Reproduced from Wikimedia Commons.',
-    sourceUrl: 'https://commons.wikimedia.org/wiki/File:CheHigh.jpg',
+    status: 'link-out',
+    display: 'link',
+    holder: 'Korda estate',
+    credit: 'Alberto Korda, 5 March 1960, Havana. © Korda estate.',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Guerrillero_Heroico',
   },
   assets: [
     {
       label: 'plate',
-      src: wm('CheHigh.jpg'),
-      alt: 'A man in a beret with a star looks past the camera, face set, against an empty sky.',
+      src: '',
+      alt: 'A man in a beret with a star looks past the camera, face set, against an empty sky. In the full negative, a stranger’s profile intrudes at the left edge and palm leaves at the right.',
     },
   ],
   look: 'A memorial service in Havana, Cuba. 5 March 1960.',
@@ -41,9 +40,9 @@ export const che: Card = {
     'He cut both away. The print stayed in his studio for seven years before it left Cuba and became the most reproduced photograph of the century.',
   ],
   probe: {
-    prompt: 'Drag the crop out and back in. What does the tight crop remove?',
-    note: 'Name what the picture can no longer tell you.',
-    tools: ['crop'],
+    prompt: 'Compare the famous crop with the full negative. What does the tight crop remove?',
+    note: 'The source record shows both. Name what the cropped picture can no longer tell you.',
+    tools: [],
     grade: 'options',
     options: [
       {

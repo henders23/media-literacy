@@ -1,5 +1,4 @@
 import type { Card } from '../types';
-import { wm } from '../sources';
 
 export const lochness: Card = {
   id: 'lochness',
@@ -12,18 +11,18 @@ export const lochness: Card = {
   ratio: 960 / 720,
   sensitivity: 'none',
   rights: {
-    status: 'embed',
-    display: 'embed',
-    holder: 'Wikimedia Commons',
+    status: 'link-out',
+    display: 'link',
+    holder: 'Associated Newspapers',
     credit:
-      'Attributed to Robert Kenneth Wilson, published in the Daily Mail, 21 April 1934. Reproduced from Wikimedia Commons.',
-    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Loch_Ness_Monster.jpg',
+      'Attributed to Robert Kenneth Wilson, published in the Daily Mail, 21 April 1934. © Associated Newspapers.',
+    sourceUrl: "https://en.wikipedia.org/wiki/Surgeon's_photograph",
   },
   assets: [
     {
       label: 'plate',
-      src: wm('Loch Ness Monster.jpg'),
-      alt: 'A small dark head and neck rise from rippled water. Nothing else is in the frame.',
+      src: '',
+      alt: 'A small dark head and neck rise from rippled water. Nothing else is in the frame — no shore, no boat, nothing of known size.',
     },
   ],
   look: 'Loch Ness, Scotland. Published 21 April 1934.',
@@ -42,9 +41,9 @@ export const lochness: Card = {
     'In 1994 Christian Spurling explained how the object was made: a model head and neck fixed to a toy submarine, about thirty centimetres high, floated near the shore.',
   ],
   probe: {
-    prompt: 'Drag the crop wider and tighter. What is missing that would tell you the size?',
-    note: 'The answer is something that is not there. Name it.',
-    tools: ['crop'],
+    prompt: 'Imagine the crop pulled wider. What is missing that would tell you the size?',
+    note: 'Open the photograph from the source record. The answer is something that is not there — name it.',
+    tools: [],
     grade: 'options',
     options: [
       {

@@ -152,14 +152,14 @@ export function IndexScreen() {
                   >
                     {linked && (
                       <span className="px-4 text-center font-mono text-[10px] uppercase leading-[1.9] tracking-[.18em] text-[#8a8578]">
-                        plate {card.ref}
-                        <br />
                         held at the archive
                       </span>
                     )}
                   </div>
                   <div className="mt-3 flex items-baseline justify-between gap-2.5 font-mono text-[10px] uppercase tracking-[.16em]">
-                    <span className="text-muted">{card.unitLabel}</span>
+                    <span className="text-muted">
+                      {card.mode === 'unseen' ? 'no scaffolding' : `plate ${card.ref}`}
+                    </span>
                     <span className={done ? 'text-blue' : r.beat ? 'text-red' : 'text-dim'}>{mark}</span>
                   </div>
                   <div className="mt-1.5 text-sm leading-[1.4]">
