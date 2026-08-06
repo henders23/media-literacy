@@ -1,5 +1,4 @@
 import type { Card } from '../types';
-import { wm } from '../sources';
 
 export const cottingley: Card = {
   id: 'cottingley',
@@ -12,18 +11,18 @@ export const cottingley: Card = {
   ratio: 960 / 745,
   sensitivity: 'none',
   rights: {
-    status: 'embed',
-    display: 'embed',
-    holder: 'Wikimedia Commons',
+    status: 'link-out',
+    display: 'link',
+    holder: 'Public domain in the United States; in copyright in the UK',
     credit:
-      'Elsie Wright, July 1917, Cottingley, Yorkshire. Published in The Strand Magazine, December 1920. Reproduced from Wikimedia Commons.',
-    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Cottingley_Fairies_1.jpg',
+      'Elsie Wright, July 1917, Cottingley, Yorkshire. Published in The Strand Magazine, December 1920. Public domain in the United States; still in copyright in the UK.',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Cottingley_Fairies',
   },
   assets: [
     {
       label: 'plate',
-      src: wm('Cottingley Fairies 1.jpg', 0),
-      alt: 'A girl rests her chin on her hand behind a grassy bank. Four winged figures appear to dance in front of her; a small waterfall runs behind.',
+      src: '',
+      alt: 'A girl rests her chin on her hand behind a grassy bank. Four winged figures appear to dance in front of her; a small waterfall runs blurred behind.',
     },
   ],
   look: 'A beck behind a garden in Cottingley, Yorkshire, England. July 1917.',
@@ -44,8 +43,8 @@ export const cottingley: Card = {
   ],
   probe: {
     prompt: 'Look at the waterfall behind and the figures in front. What separates them?',
-    note: 'The exposure lasted long enough to matter. Use the loupe.',
-    tools: ['loupe'],
+    note: 'Open the photograph from the source record. The exposure lasted long enough to matter.',
+    tools: [],
     grade: 'options',
     options: [
       {
