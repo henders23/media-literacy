@@ -75,8 +75,27 @@ export function IndexScreen() {
       >
         {page === 0 && (
           <div>
-            <h1 className="mb-6 mt-8 text-center text-[52px] uppercase leading-none tracking-[.26em] text-ink [text-indent:.26em] xl:text-[64px]">
-              Loupe
+            <h1 className="mb-6 mt-8 flex items-center justify-center gap-5 text-[52px] uppercase leading-none tracking-[.26em] text-ink xl:text-[64px]">
+              <span className="[text-indent:.26em]">Loupe</span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-[0.92em] w-[0.92em] -translate-y-[0.04em]">
+                <circle cx="10" cy="10" r="6.5" stroke="currentColor" strokeWidth="1.6" />
+                <path
+                  d="M5.9 8.2a4.7 4.7 0 0 1 2.6-2.5"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  opacity=".45"
+                />
+                <line
+                  x1="15.1"
+                  y1="15.1"
+                  x2="21"
+                  y2="21"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
             </h1>
             <p className="mx-auto mb-7 max-w-[34ch] text-center text-[22px] leading-[1.45] tracking-[-.01em] text-soft">
               Explore historical photos to identify principles of media literacy.
