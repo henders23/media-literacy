@@ -1,6 +1,7 @@
 import { HashRouter, Link, Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { IndexScreen } from './screens/IndexScreen';
+import { StartScreen } from './screens/StartScreen';
 import { CardScreen } from './screens/CardScreen';
 import { ReviewScreen } from './screens/ReviewScreen';
 import { TeacherPanel } from './teacher/TeacherPanel';
@@ -66,6 +67,7 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<IndexScreen />} />
+          <Route path="/start" element={<StartScreen />} />
           <Route path="/card/:id" element={<CardScreen />} />
           <Route path="/review" element={<ReviewScreen />} />
           <Route path="/teacher" element={<TeacherRoute />} />

@@ -78,9 +78,18 @@ export function IndexScreen() {
             <h1 className="mb-6 mt-8 text-center text-[52px] uppercase leading-none tracking-[.26em] text-ink [text-indent:.26em] xl:text-[64px]">
               Loupe
             </h1>
-            <p className="mx-auto mb-8 max-w-[34ch] text-center text-[22px] leading-[1.45] tracking-[-.01em] text-soft">
+            <p className="mx-auto mb-7 max-w-[34ch] text-center text-[22px] leading-[1.45] tracking-[-.01em] text-soft">
               Explore historical photos to identify principles of media literacy.
             </p>
+            <div className="mb-8 text-center">
+              <button
+                type="button"
+                onClick={() => navigate('/start')}
+                className="inline-block cursor-pointer rounded border border-red px-[18px] py-[11px] font-mono text-[11px] uppercase tracking-[.16em] text-red transition-colors hover:bg-red hover:text-paper motion-reduce:transition-none"
+              >
+                start here — how this app works
+              </button>
+            </div>
             <div className="mx-auto mb-14 flex max-w-[72ch] flex-wrap items-baseline justify-center gap-x-5 gap-y-2">
               <span className="font-mono text-[10px] uppercase tracking-[.16em] text-muted">
                 lenses collected · {collected.length} of {LENSES.length}

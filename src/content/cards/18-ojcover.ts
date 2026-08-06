@@ -16,7 +16,7 @@ export const ojcover: Card = {
     holder: 'Time Inc.',
     credit:
       'Matt Mahurin photo-illustration of a Los Angeles Police Department booking photograph. Time, 27 June 1994.',
-    sourceUrl: 'https://en.wikipedia.org/wiki/O._J._Simpson_murder_case',
+    sourceUrl: 'https://content.time.com/time/covers/0,16641,19940627,00.html',
   },
   assets: [
     {
@@ -37,7 +37,7 @@ export const ojcover: Card = {
   ],
   probe: {
     prompt: "Set the two covers side by side. What did Time's version change?",
-    note: 'The source record shows both covers.',
+    note: "The source record is Time's own cover archive. For the unaltered version, search 'Newsweek June 27 1994 cover' and put them side by side.",
     tools: [],
     grade: 'options',
     options: [

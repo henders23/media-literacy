@@ -16,7 +16,7 @@ export const lochness: Card = {
     holder: 'Associated Newspapers',
     credit:
       'Attributed to Robert Kenneth Wilson, published in the Daily Mail, 21 April 1934. © Associated Newspapers.',
-    sourceUrl: "https://en.wikipedia.org/wiki/Surgeon's_photograph",
+    sourceUrl: 'https://en.wikipedia.org/wiki/Loch_Ness_Monster',
   },
   assets: [
     {

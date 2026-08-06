@@ -16,7 +16,7 @@ export const rothstein: Card = {
     holder: 'Library of Congress',
     credit:
       'Arthur Rothstein, May 1936, Pennington County, South Dakota. Farm Security Administration collection, Library of Congress. Public domain.',
-    sourceUrl: 'https://www.loc.gov/pictures/search/?q=rothstein%20steer%20skull',
+    sourceUrl: 'https://www.loc.gov/pictures/search/?q=bleached%20skull%20of%20a%20steer',
   },
   assets: [
     {

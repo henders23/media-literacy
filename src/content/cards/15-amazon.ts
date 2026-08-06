@@ -16,7 +16,7 @@ export const amazon: Card = {
     holder: 'Estate of Loren McIntyre / various agencies',
     credit:
       'Photographer Loren McIntyre, date unknown — before 2003. Circulated worldwide in August 2019 as the burning Amazon.',
-    sourceUrl: 'https://en.wikipedia.org/wiki/2019_Amazon_rainforest_wildfires',
+    sourceUrl: 'https://www.snopes.com/fact-check/amazon-rainforest-fire-photos/',
   },
   assets: [
     {
