@@ -15,7 +15,21 @@ function Header() {
   const { teacherOpen, toggleTeacher } = useUi();
   return (
     <div className="relative z-[2] flex items-center justify-between gap-6 border-b border-line px-8 pb-3 pt-3.5">
-      <Link to="/" className="border-b-0 text-[13px] uppercase tracking-[.42em] text-ink hover:text-ink">
+      <Link
+        to="/"
+        className="flex items-center gap-2.5 border-b-0 text-[13px] uppercase tracking-[.42em] text-ink hover:text-ink"
+      >
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-[18px] w-[18px] -translate-y-px">
+          <circle cx="10" cy="10" r="6.5" stroke="currentColor" strokeWidth="1.6" />
+          <path
+            d="M5.9 8.2a4.7 4.7 0 0 1 2.6-2.5"
+            stroke="currentColor"
+            strokeWidth="1"
+            strokeLinecap="round"
+            opacity=".45"
+          />
+          <line x1="15.1" y1="15.1" x2="21" y2="21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
         loupe
       </Link>
       <nav className="flex items-center gap-5 font-mono text-[10px] uppercase tracking-[.16em]">
