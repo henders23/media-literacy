@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { CARDS, cardById, cardIndex } from '../content/cards';
+import { cardById, visibleCards } from '../content/cards';
+import { useProgress } from '../store/progress';
 import { BeatRunner } from '../engine/BeatRunner';
 import { Plate } from '../components/Plate';
 import { useUi } from '../store/ui';
@@ -9,6 +10,7 @@ export function CardScreen() {
   const { id = '' } = useParams();
   const navigate = useNavigate();
   const card = cardById(id);
+  const settings = useProgress((s) => s.settings);
   const setCurrentCard = useUi((s) => s.setCurrentCard);
   const resetPlate = useUi((s) => s.resetPlate);
 
@@ -27,8 +29,10 @@ export function CardScreen() {
     );
   }
 
-  const idx = cardIndex(card.id);
-  const next = idx < CARDS.length - 1 ? CARDS[idx + 1] : null;
+  // "Next plate" walks the teacher-gated deck, skipping hidden tiers.
+  const deck = visibleCards(settings);
+  const idx = deck.findIndex((c) => c.id === card.id);
+  const next = idx >= 0 && idx < deck.length - 1 ? deck[idx + 1] : null;
 
   return (
     <div className="relative z-[2] grid min-h-[calc(100vh-54px)] grid-cols-1 lg:grid-cols-[1.08fr_1fr]">

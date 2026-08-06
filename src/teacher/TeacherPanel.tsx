@@ -24,7 +24,7 @@ function audit() {
 
 export function TeacherPanel() {
   const { teacherOpen, toggleTeacher, currentCardId, ab, diff, toggleDiff } = useUi();
-  const { records, aligns, setAlign, resetAlign, clearResponses } = useProgress();
+  const { records, aligns, setAlign, resetAlign, clearResponses, settings, setSettings } = useProgress();
   if (!teacherOpen) return null;
 
   const card = currentCardId ? cardById(currentCardId) : undefined;
@@ -106,6 +106,36 @@ export function TeacherPanel() {
           </div>
         </div>
       )}
+
+      <div className="mb-3 font-mono text-[10px] uppercase tracking-[.16em] text-muted">deck gating</div>
+      <div className="mb-9 flex flex-col gap-3">
+        <label className="flex cursor-pointer items-baseline gap-3 text-[12.5px] text-body">
+          <input
+            type="checkbox"
+            checked={settings.showExtended}
+            onChange={(e) => setSettings({ showExtended: e.target.checked })}
+          />
+          <span>
+            extended plates
+            <span className="ml-2 font-mono text-[10px] uppercase tracking-[.14em] text-muted">
+              optional depth within units
+            </span>
+          </span>
+        </label>
+        <label className="flex cursor-pointer items-baseline gap-3 text-[12.5px] text-body">
+          <input
+            type="checkbox"
+            checked={settings.showGated}
+            onChange={(e) => setSettings({ showGated: e.target.checked })}
+          />
+          <span>
+            unit 7 — what photographs cost
+            <span className="ml-2 font-mono text-[10px] uppercase tracking-[.14em] text-red">
+              graphic material · off by default · run after the capstone
+            </span>
+          </span>
+        </label>
+      </div>
 
       <div className="mb-3 font-mono text-[10px] uppercase tracking-[.16em] text-muted">
         rights audit — all plates

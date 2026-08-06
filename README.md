@@ -51,10 +51,16 @@ line. Do not weaken it.
 
 ## Content status
 
-13 of the 31 cards in the BUILD.md manifest are authored (the full seven-beat text existed in
-the prototype): refs 03, 05, 06, 07, 09, 11, 12, 13, 14, 16, 20, 27 and the unassessed
-capstone. The remaining cards are content work (BUILD.md §8 phase 8), not engine work — add a
-file to `src/content/cards/` and register it in `index.ts`.
+All 31 cards in the BUILD.md manifest are authored, plus the unassessed capstone. Cards whose
+photographs are under copyright use the rights ladder's **link-out** rung: the app supplies the
+context and questions, and a button opens the photograph at the rights holder's archive — it is
+never copied. Unit 7 (graphic material) ships gated off; the teacher panel turns it on.
+
+## Music
+
+"Healing" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0, plays on start and
+loops; the header button turns it off and the choice persists on the device. Full attribution
+is on the credits page (the last page of the index).
 
 ## LMS deployment
 

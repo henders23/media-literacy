@@ -93,6 +93,48 @@ export function Plate({ card }: { card: Card }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Link-out material: the app supplies context and questions; the photograph
+  // itself opens at the rights holder's archive and is never copied here.
+  if (card.rights.display !== 'host' && card.rights.display !== 'embed') {
+    return (
+      <div className="w-full" style={{ maxWidth: `calc(64vh * ${card.ratio.toFixed(3)})` }}>
+        <div
+          className="flex w-full flex-col items-start justify-between gap-6 border border-line bg-[#eeebe1] p-7"
+          style={{ aspectRatio: String(Math.max(card.ratio, 0.9)) }}
+        >
+          <div>
+            <div className="mb-3 font-mono text-[10px] uppercase tracking-[.2em] text-muted">
+              held at the rights holder's archive
+            </div>
+            <p className="max-w-[46ch] text-[14px] leading-[1.8] text-body [text-wrap:pretty]">{asset.alt}</p>
+            {card.sensitivity === 'graphic' && (
+              <p className="mt-4 max-w-[44ch] font-mono text-[11px] uppercase leading-[1.8] tracking-[.12em] text-red">
+                distressing photograph — open it deliberately
+              </p>
+            )}
+          </div>
+          <a
+            href={card.rights.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded border border-blue px-[18px] py-[11px] font-mono text-[11px] uppercase tracking-[.16em] text-blue no-underline hover:bg-blue hover:text-paper"
+            style={{ borderBottomWidth: 1 }}
+          >
+            open the photograph at the archive
+          </a>
+        </div>
+        <div className="mt-4 max-w-[62ch] text-base leading-normal text-ink">{card.title}</div>
+        <div className="mt-2 max-w-[62ch] text-[13.5px] leading-[1.7] text-faint">{card.rights.credit}</div>
+        <div className="mt-2 text-[13.5px]">
+          <a href={card.rights.sourceUrl} target="_blank" rel="noopener noreferrer">
+            source record
+          </a>
+          <span className="text-dim"> · {rightsLine(card)}</span>
+        </div>
+      </div>
+    );
+  }
+
   const bg = `url("${resolveSrc(asset.src)}")`;
   const greyscale = tools.includes('colour') && !answered;
   const loupeOn = tools.includes('loupe') && loupe && live;
@@ -264,9 +306,14 @@ export function Plate({ card }: { card: Card }) {
 
 const hint = hintFor;
 
-const rightsLine = (card: Card): string =>
-  card.rights.status === 'public-domain'
+const rightsLine = (card: Card): string => {
+  if (card.rights.display === 'link')
+    return card.rights.status === 'public-domain'
+      ? "public domain, linked to the holder's archive"
+      : 'under copyright, linked — never copied';
+  return card.rights.status === 'public-domain'
     ? 'public domain, hosted with this app'
     : card.rights.status === 'embed'
       ? "served from the rights holder's archive"
       : card.rights.status;
+};
