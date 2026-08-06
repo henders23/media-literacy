@@ -4,6 +4,7 @@ import { IndexScreen } from './screens/IndexScreen';
 import { CardScreen } from './screens/CardScreen';
 import { ReviewScreen } from './screens/ReviewScreen';
 import { TeacherPanel } from './teacher/TeacherPanel';
+import { MusicToggle } from './components/Music';
 import { useUi } from './store/ui';
 
 const GRAIN =
@@ -12,11 +13,11 @@ const GRAIN =
 function Header() {
   const { teacherOpen, toggleTeacher } = useUi();
   return (
-    <div className="relative z-[2] flex items-baseline justify-between gap-6 border-b border-line px-8 pb-3.5 pt-[18px]">
+    <div className="relative z-[2] flex items-center justify-between gap-6 border-b border-line px-8 pb-3 pt-3.5">
       <Link to="/" className="border-b-0 text-[13px] uppercase tracking-[.42em] text-ink hover:text-ink">
         loupe
       </Link>
-      <nav className="flex items-baseline gap-5 font-mono text-[10px] uppercase tracking-[.16em]">
+      <nav className="flex items-center gap-5 font-mono text-[10px] uppercase tracking-[.16em]">
         <Link to="/" className="border-b-0 text-muted hover:text-blue">
           index
         </Link>
@@ -30,6 +31,7 @@ function Header() {
         >
           {teacherOpen ? 'close teacher mode' : 'teacher mode'}
         </button>
+        <MusicToggle />
       </nav>
     </div>
   );

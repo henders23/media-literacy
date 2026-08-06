@@ -19,13 +19,18 @@ export type CardRecord = {
   done?: boolean;
 };
 
+/** Teacher gating of the deck (BUILD.md phase 7). Unit 7 is off by default. */
+export type DeckSettings = { showExtended: boolean; showGated: boolean };
+
 type ProgressState = {
   records: Record<string, CardRecord>;
   /** Teacher calibration of plate registration, keyed `${cardId}:${assetIndex}`. */
   aligns: Record<string, Align>;
+  settings: DeckSettings;
   save: (cardId: string, patch: Partial<CardRecord>) => void;
   setAlign: (key: string, align: Align) => void;
   resetAlign: (key: string) => void;
+  setSettings: (patch: Partial<DeckSettings>) => void;
   clearResponses: () => void;
 };
 
@@ -34,6 +39,7 @@ export const useProgress = create<ProgressState>()(
     (set) => ({
       records: {},
       aligns: {},
+      settings: { showExtended: true, showGated: false },
       save: (cardId, patch) =>
         set((s) => ({
           records: { ...s.records, [cardId]: { ...s.records[cardId], ...patch } },
@@ -45,9 +51,16 @@ export const useProgress = create<ProgressState>()(
           delete aligns[key];
           return { aligns };
         }),
+      setSettings: (patch) => set((s) => ({ settings: { ...s.settings, ...patch } })),
       clearResponses: () => set({ records: {} }),
     }),
-    { name: 'loupe.responses.v1' },
+    {
+      name: 'loupe.responses.v1',
+      merge: (persisted, current) => {
+        const p = (persisted ?? {}) as Partial<ProgressState>;
+        return { ...current, ...p, settings: { ...current.settings, ...p.settings } };
+      },
+    },
   ),
 );
 

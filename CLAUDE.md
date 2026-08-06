@@ -52,4 +52,6 @@ Errors explain what went wrong and how to fix it. Buttons say what happens: "Sho
 
 ## Current phase
 
-Phase 0. Update this line as you go.
+Phase 8 complete — all 31 manifest cards plus the unassessed capstone are authored; engine,
+interactions, rights gate, teacher mode, deck gating, music and credits are in. Remaining:
+phase 6 activities (lens sort, build-the-deception, spaced return) and the phase 9 ship pass.
